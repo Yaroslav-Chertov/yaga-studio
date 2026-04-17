@@ -1,0 +1,107 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 $section-padding-x 5rem;
+  overflow: hidden;
+
+  &__ghost {
+    @include ghost-text(22vw);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    transition: transform 0.7s ease;
+  }
+
+  &__glow {
+    @include radial-glow(600px, 0.06);
+    top: 33%;
+  }
+
+  &__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+
+    &-line {
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background-color: $color-ember;
+    }
+
+    &-label {
+      @include label;
+    }
+  }
+
+  &__heading {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: clamp(3.25rem, 8.5vw, 7.25rem);
+    letter-spacing: $tracking-tightest;
+    line-height: 0.9;
+    margin-bottom: 3rem;
+
+    &-accent {
+      font-style: normal;
+      color: $color-ember;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  &__description {
+    font-family: $font-body;
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: $color-muted;
+    max-width: 28rem;
+
+    strong {
+      color: $color-primary;
+      font-weight: 500;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  &__cta {
+    @include btn-primary;
+  }
+
+  &__scroll-hint {
+    font-size: 0.6875rem;
+    letter-spacing: $tracking-widest;
+    text-transform: uppercase;
+    color: $color-subtle;
+  }
+
+  &__divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $color-border;
+  }
+}

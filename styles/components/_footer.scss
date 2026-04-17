@@ -1,0 +1,48 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.footer {
+  padding: 2.5rem $section-padding-x;
+  border-top: 1px solid $color-border;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+
+  &__logo {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.125rem;
+    letter-spacing: $tracking-tight;
+    color: $color-primary;
+
+    &-accent {
+      color: $color-ember;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  &__link {
+    font-family: $font-body;
+    font-size: 0.75rem;
+    letter-spacing: $tracking-widest;
+    text-transform: uppercase;
+    color: $color-subtle;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__copy {
+    font-family: $font-body;
+    font-size: 0.75rem;
+    color: rgba($color-subtle, 0.5);
+  }
+}

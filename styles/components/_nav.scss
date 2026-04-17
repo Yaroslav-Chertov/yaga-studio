@@ -1,0 +1,71 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-nav;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem $section-padding-x;
+  transition: background-color $transition-slow, backdrop-filter $transition-slow, border-color $transition-slow;
+
+  &--scrolled {
+    background-color: rgba($color-bg, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__logo {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: $tracking-tight;
+    color: $color-primary;
+
+    &-accent {
+      color: $color-ember;
+    }
+  }
+
+  &__list {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+
+    @include md {
+      display: flex;
+    }
+  }
+
+  &__link {
+    font-family: $font-body;
+    font-size: 0.75rem;
+    letter-spacing: $tracking-widest;
+    text-transform: uppercase;
+    color: $color-muted;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__cta {
+    background-color: $color-ember;
+    color: $color-primary;
+    font-family: $font-display;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: $tracking-wide;
+    padding: 0.625rem 1.25rem;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: color-mix(in srgb, $color-ember 90%, transparent);
+    }
+  }
+}

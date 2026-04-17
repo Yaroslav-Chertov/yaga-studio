@@ -1,0 +1,28 @@
+@use "../variables" as *;
+
+.cursor {
+  &__dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-dot;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $color-ember;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  &__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-cursor;
+    border-radius: 50%;
+    border: 1px solid rgba($color-ember, 0.5);
+    pointer-events: none;
+    will-change: transform;
+    transition: width 0.2s ease, height 0.2s ease;
+  }
+}

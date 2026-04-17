@@ -1,0 +1,111 @@
+@use "variables" as *;
+
+@mixin md {
+  @media (min-width: #{$bp-md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$bp-lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$bp-xl}) {
+    @content;
+  }
+}
+
+@mixin label {
+  font-family: $font-body;
+  font-size: 0.6875rem; // 11px
+  letter-spacing: $tracking-widest;
+  text-transform: uppercase;
+  color: $color-ember;
+}
+
+@mixin section-heading {
+  font-family: $font-display;
+  font-weight: 900;
+  letter-spacing: $tracking-tighter;
+  line-height: 1;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+}
+
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: $color-ember;
+  color: $color-primary;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: $tracking-wide;
+  padding: 1.25rem 2.25rem;
+  transition:
+    background-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background-color: color-mix(in srgb, $color-ember 90%, transparent);
+    transform: scale(1.02);
+  }
+}
+
+@mixin btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba($color-primary, 0.2);
+  color: $color-muted;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: $tracking-wide;
+  padding: 1.1875rem 1.75rem;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.6);
+    color: $color-primary;
+  }
+}
+
+@mixin section-base {
+  padding: $section-padding-y $section-padding-x;
+  border-bottom: 1px solid $color-border;
+}
+
+@mixin ghost-text($size) {
+  font-family: $font-display;
+  font-weight: 900;
+  font-size: $size;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba($color-primary, 0.04);
+  letter-spacing: $tracking-tightest;
+  white-space: nowrap;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+@mixin radial-glow($size: 600px, $opacity: 0.06) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba($color-ember, $opacity) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
