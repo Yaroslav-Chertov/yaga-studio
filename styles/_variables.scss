@@ -1,32 +1,41 @@
-$color-bg: #070509;
-$color-surface: #0b0b0f;
-$color-border: #1c1820;
-$color-primary: #f1ede7;
-$color-muted: #a9a3a0;
-$color-subtle: #5a5458;
-$color-ember: #ff4d2e;
-$color-wine: #7a1020;
+// ─── Colors ───────────────────────────────────────────────────────────────────
+$color-bg: #7e6989;
+$color-surface: #6c5876;
+$color-border: #5b4765;
+$color-primary: #fff4ed;
+$color-muted: #e1d2d8;
+$color-subtle: #c2afba;
+$color-ember: #ff6a3d;
+$color-wine: #a22c5f;
+$color-ink: #251a2c;
+$color-shadow: #3f3048;
 
-$font-display: "Unbounded", sans-serif;
+// ─── Typography ───────────────────────────────────────────────────────────────
+$font-display: "Manrope", sans-serif;
 $font-body: "Onest", sans-serif;
 
-$tracking-tightest: -0.04em;
-$tracking-tighter: -0.03em;
+// ─── Letter Spacing ───────────────────────────────────────────────────────────
+$tracking-tightest: -0.05em;
+$tracking-tighter: -0.035em;
 $tracking-tight: -0.02em;
-$tracking-wide: 0.08em;
-$tracking-widest: 0.12em;
+$tracking-wide: 0.06em;
+$tracking-widest: 0.14em;
 
-$section-padding-x: 3.5rem; // 56px
-$section-padding-y: 8rem; // 128px
+// ─── Spacing ──────────────────────────────────────────────────────────────────
+$section-padding-x: clamp(1.25rem, 3vw, 3.5rem);
+$section-padding-y: clamp(5rem, 10vw, 8rem);
 
+// ─── Breakpoints ──────────────────────────────────────────────────────────────
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1280px;
 
+// ─── Transitions ──────────────────────────────────────────────────────────────
 $transition-fast: 0.2s ease;
 $transition-base: 0.35s ease;
 $transition-slow: 0.6s ease;
 
+// ─── Z-index scale ────────────────────────────────────────────────────────────
 $z-nav: 50;
 $z-cursor: 9998;
 $z-dot: 9999;

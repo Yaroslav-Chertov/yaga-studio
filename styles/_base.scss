@@ -1,6 +1,6 @@
 @use "variables" as *;
 
-@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Onest:wght@300;400;500&display=swap");
 
 // ─── Reset / Base ─────────────────────────────────────────────────────────────
 *,
@@ -17,18 +17,41 @@ html {
 }
 
 body {
-  background-color: $color-bg;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba($color-primary, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba($color-wine, 0.16), transparent 26%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, $color-bg 92%, white 8%) 0%,
+      $color-bg 46%,
+      $color-surface 100%
+    );
   color: $color-primary;
   font-family: $font-body;
-  font-weight: 300;
+  font-weight: 400;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  position: relative;
+}
+
+section {
+  position: relative;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
 }
 
 ul,
@@ -38,8 +61,8 @@ ol {
 
 // ─── Selection ────────────────────────────────────────────────────────────────
 ::selection {
-  background: $color-ember;
-  color: $color-bg;
+  background: $color-primary;
+  color: $color-ink;
 }
 
 // ─── Scrollbar ────────────────────────────────────────────────────────────────
@@ -48,10 +71,18 @@ ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: $color-bg;
+  background: rgba($color-bg, 0.55);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-ember;
+  background: rgba($color-primary, 0.72);
   border-radius: 2px;
+}
+
+@media (hover: none), (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+  }
 }

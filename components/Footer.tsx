@@ -7,21 +7,29 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer className="footer">
-      <a href="#" className="footer__logo">
-        YA<span className="footer__logo-accent">GA</span>
-      </a>
+      <div className="footer__intro">
+        <a href="#" className="footer__logo">
+          YAGA
+        </a>
+        <p className="footer__copy">
+          Дизайн, разработка и продуктовая упаковка для проектов, которым тесно в
+          безопасных решениях.
+        </p>
+      </div>
 
-      <ul className="footer__links">
-        {footerLinks.map((l) => (
-          <li key={l.label}>
-            <a href={l.href} data-hover className="footer__link">
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="footer__meta">
+        <ul className="footer__links">
+          {footerLinks.map((l) => (
+            <li key={l.label}>
+              <a href={l.href} data-hover className="footer__link">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      <p className="footer__copy">© 2025 YAGA Studio · Белград — Петербург</p>
+        <p className="footer__caption">© 2026 YAGA Studio · Белград — Петербург</p>
+      </div>
     </footer>
   );
 }

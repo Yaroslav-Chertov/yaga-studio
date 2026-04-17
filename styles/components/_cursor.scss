@@ -9,8 +9,9 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: $color-ember;
+    background-color: $color-primary;
     pointer-events: none;
+    mix-blend-mode: difference;
     will-change: transform;
   }
 
@@ -20,9 +21,18 @@
     left: 0;
     z-index: $z-cursor;
     border-radius: 50%;
-    border: 1px solid rgba($color-ember, 0.5);
+    border: 1px solid rgba($color-primary, 0.5);
     pointer-events: none;
     will-change: transform;
-    transition: width 0.2s ease, height 0.2s ease;
+    transition:
+      width 0.2s ease,
+      height 0.2s ease;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor__dot,
+  .cursor__ring {
+    display: none;
   }
 }

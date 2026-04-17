@@ -4,43 +4,43 @@ import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 interface Service {
-  num:    string;
-  name:   string;
-  desc:   string;
+  num: string;
+  name: string;
+  desc: string;
   badge?: string;
 }
 
 const services: Service[] = [
   {
-    num:  "01",
+    num: "01",
     name: "UX-дизайн & Исследования",
     desc: "Ресёрч, сценарии, архитектура, вайрфреймы. Проектируем логику до того, как нарисуем пиксель.",
   },
   {
-    num:  "02",
+    num: "02",
     name: "UI-дизайн & Дизайн-система",
     desc: "Полный комплект макетов, адаптив, UI-kit. Смело, но со смыслом — каждое решение обосновано.",
   },
   {
-    num:  "03",
+    num: "03",
     name: "Веб-разработка",
     desc: "Frontend + Backend, интеграции, деплой. Реализуем то, что нарисовано — без компромиссов.",
   },
   {
-    num:   "04",
-    name:  "AI-трек",
-    desc:  "Дизайн или разработка с AI-ускорением. В 2–3 раза быстрее, дешевле, с фиксированным числом итераций.",
+    num: "04",
+    name: "AI-трек",
+    desc: "Дизайн или разработка с AI-ускорением. В 2–3 раза быстрее, дешевле, с фиксированным числом итераций.",
     badge: "⚡ Быстрый запуск",
   },
 ];
 
 interface ServiceRowProps {
-  s:     Service;
+  s: Service;
   delay: number;
 }
 
 function ServiceRow({ s, delay }: ServiceRowProps) {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [hovered, setHovered] = useState(false);
 
@@ -52,8 +52,8 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        opacity:    inView ? 1 : 0,
-        transform:  inView ? "translateX(0)" : "translateX(-20px)",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateX(0)" : "translateX(-20px)",
         transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
         background: hovered ? "rgba(255,77,46,0.04)" : "transparent",
       }}
@@ -70,7 +70,7 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
       <span
         className="service-row__arrow"
         style={{
-          color:     hovered ? "#FF4D2E" : "rgba(241,237,231,0.15)",
+          color: hovered ? "#FF4D2E" : "rgba(241,237,231,0.15)",
           transform: hovered ? "translate(4px,-4px)" : "none",
         }}
       >
@@ -81,7 +81,7 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
 }
 
 export default function Services() {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
 
   return (
@@ -93,8 +93,8 @@ export default function Services() {
           <h2
             className="services__heading"
             style={{
-              opacity:    inView ? 1 : 0,
-              transform:  inView ? "none" : "translateY(20px)",
+              opacity: inView ? 1 : 0,
+              transform: inView ? "none" : "translateY(20px)",
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
@@ -104,8 +104,7 @@ export default function Services() {
           </h2>
         </div>
         <p className="services__subtitle">
-          Берёмся за проекты, где нужен не просто красивый экран, а работающий
-          продукт.
+          Берёмся за проекты, где нужен не просто красивый экран, а работающий продукт.
         </p>
       </div>
 

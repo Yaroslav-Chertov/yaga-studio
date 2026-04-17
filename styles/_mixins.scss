@@ -1,5 +1,6 @@
 @use "variables" as *;
 
+// ─── Responsive ───────────────────────────────────────────────────────────────
 @mixin md {
   @media (min-width: #{$bp-md}) {
     @content;
@@ -18,40 +19,51 @@
   }
 }
 
+// ─── Typography helpers ───────────────────────────────────────────────────────
 @mixin label {
   font-family: $font-body;
   font-size: 0.6875rem; // 11px
+  font-weight: 500;
   letter-spacing: $tracking-widest;
   text-transform: uppercase;
-  color: $color-ember;
+  color: rgba($color-primary, 0.85);
 }
 
 @mixin section-heading {
   font-family: $font-display;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: $tracking-tighter;
-  line-height: 1;
-  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 0.95;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
 
+// ─── Button ───────────────────────────────────────────────────────────────────
 @mixin btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: $color-ember;
-  color: $color-primary;
-  font-family: $font-display;
-  font-weight: 700;
+  justify-content: center;
+  min-height: 3.5rem;
+  border: 1px solid rgba($color-ink, 0.14);
+  border-radius: 999px;
+  background-color: $color-primary;
+  color: $color-ink;
+  box-shadow: 0 14px 30px rgba($color-ink, 0.14);
+  font-family: $font-body;
+  font-weight: 500;
   font-size: 0.875rem;
   letter-spacing: $tracking-wide;
   padding: 1.25rem 2.25rem;
   transition:
     background-color $transition-fast,
-    transform $transition-fast;
+    color $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
 
   &:hover {
-    background-color: color-mix(in srgb, $color-ember 90%, transparent);
-    transform: scale(1.02);
+    background-color: color-mix(in srgb, $color-primary 92%, $color-ember 8%);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 38px rgba($color-ink, 0.18);
   }
 }
 
@@ -59,41 +71,49 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba($color-primary, 0.2);
-  color: $color-muted;
-  font-family: $font-display;
-  font-weight: 700;
-  font-size: 0.75rem;
+  justify-content: center;
+  min-height: 3.5rem;
+  border: 1px solid rgba($color-primary, 0.22);
+  border-radius: 999px;
+  color: $color-primary;
+  font-family: $font-body;
+  font-weight: 500;
+  font-size: 0.8125rem;
   letter-spacing: $tracking-wide;
   padding: 1.1875rem 1.75rem;
   transition:
     border-color $transition-fast,
-    color $transition-fast;
+    color $transition-fast,
+    background-color $transition-fast;
 
   &:hover {
-    border-color: rgba($color-primary, 0.6);
+    border-color: rgba($color-primary, 0.48);
+    background-color: rgba($color-primary, 0.06);
     color: $color-primary;
   }
 }
 
+// ─── Section layout ───────────────────────────────────────────────────────────
 @mixin section-base {
   padding: $section-padding-y $section-padding-x;
-  border-bottom: 1px solid $color-border;
+  border-top: 1px solid rgba($color-primary, 0.16);
 }
 
+// ─── Ghost text (decorative large background text) ────────────────────────────
 @mixin ghost-text($size) {
   font-family: $font-display;
-  font-weight: 900;
+  font-weight: 800;
   font-size: $size;
   color: transparent;
-  -webkit-text-stroke: 1px rgba($color-primary, 0.04);
-  letter-spacing: $tracking-tightest;
+  -webkit-text-stroke: 1px rgba($color-primary, 0.08);
+  letter-spacing: -0.06em;
   white-space: nowrap;
   line-height: 1;
   user-select: none;
   pointer-events: none;
 }
 
+// ─── Glow decoration ──────────────────────────────────────────────────────────
 @mixin radial-glow($size: 600px, $opacity: 0.06) {
   position: absolute;
   top: 50%;
@@ -104,8 +124,9 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba($color-ember, $opacity) 0%,
-    transparent 70%
+    rgba($color-primary, $opacity) 0%,
+    rgba($color-ember, $opacity * 0.6) 35%,
+    transparent 72%
   );
   pointer-events: none;
 }

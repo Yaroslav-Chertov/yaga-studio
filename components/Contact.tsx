@@ -199,8 +199,8 @@ export default function Contact() {
           <span className="contact__label">Контакт</span>
           <h2 className="contact__heading">Расскажите нам о вашем проекте</h2>
           <p className="contact__lead">
-            Соберём короткий бриф, свяжемся в течение рабочего дня и предложим
-            понятный следующий шаг.
+            Соберём короткий бриф, свяжемся в течение рабочего дня и предложим понятный
+            следующий шаг.
           </p>
         </div>
 
@@ -242,9 +242,7 @@ export default function Contact() {
                   errors.services ? " is-invalid" : ""
                 }`}
               >
-                <legend className="contact__legend">
-                  Какие услуги вас интересуют?
-                </legend>
+                <legend className="contact__legend">Какие услуги вас интересуют?</legend>
                 <p className="contact__hint">Можно выбрать несколько вариантов</p>
                 <div className="contact__choices">
                   {SERVICES.map((service) => {
@@ -253,9 +251,7 @@ export default function Contact() {
                     return (
                       <label
                         key={service}
-                        className={`contact__choice${
-                          checked ? " is-selected" : ""
-                        }`}
+                        className={`contact__choice${checked ? " is-selected" : ""}`}
                       >
                         <input
                           type="checkbox"
@@ -298,9 +294,7 @@ export default function Contact() {
                     </label>
                   ))}
                 </div>
-                {errors.budget ? (
-                  <p className="contact__error">{errors.budget}</p>
-                ) : null}
+                {errors.budget ? <p className="contact__error">{errors.budget}</p> : null}
               </fieldset>
 
               <label className="contact__field contact__field--full">
@@ -380,11 +374,7 @@ export default function Contact() {
                 />
               </label>
 
-              <label
-                className={`contact__field${
-                  errors.contact ? " is-invalid" : ""
-                }`}
-              >
+              <label className={`contact__field${errors.contact ? " is-invalid" : ""}`}>
                 <span className="contact__legend">Telegram или другой контакт</span>
                 <span className="contact__hint">Обязательно</span>
                 <input
@@ -404,11 +394,7 @@ export default function Contact() {
               </label>
             </div>
 
-            <label
-              className={`contact__consent${
-                errors.consent ? " is-invalid" : ""
-              }`}
-            >
+            <label className={`contact__consent${errors.consent ? " is-invalid" : ""}`}>
               <input
                 type="checkbox"
                 name="consent"
@@ -416,20 +402,18 @@ export default function Contact() {
                 onChange={handleInputChange}
               />
               <span>
-                Нажимая на кнопку, вы даёте согласие на обработку персональных
-                данных и соглашаетесь с политикой конфиденциальности.
+                Нажимая на кнопку, вы даёте согласие на обработку персональных данных и
+                соглашаетесь с политикой конфиденциальности.
               </span>
             </label>
             {errors.consent ? (
-              <p className="contact__error contact__error--consent">
-                {errors.consent}
-              </p>
+              <p className="contact__error contact__error--consent">{errors.consent}</p>
             ) : null}
 
             <div className="contact__footer">
               <p className="contact__note">
-                Ответим в течение рабочего дня и при необходимости запросим
-                детали по задаче.
+                Ответим в течение рабочего дня и при необходимости запросим детали по
+                задаче.
               </p>
               <button
                 type="submit"

@@ -3,118 +3,103 @@
 
 .services {
   @include section-base;
-  padding-top: $section-padding-y;
-  padding-left: $section-padding-x;
-  padding-right: $section-padding-x;
 
   &__label {
     @include label;
     display: block;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+
+    @include lg {
+      grid-template-columns: minmax(0, 1fr) 22rem;
+      align-items: end;
+    }
   }
 
   &__heading {
     @include section-heading;
+    max-width: 8ch;
   }
 
   &__subtitle {
-    font-family: $font-body;
-    font-size: 0.875rem;
-    color: $color-subtle;
-    max-width: 17.5rem;
-    text-align: right;
-    line-height: 1.6;
+    color: rgba($color-primary, 0.74);
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   &__list {
-    border-top: 1px solid $color-border;
+    border-top: 1px solid rgba($color-primary, 0.16);
   }
 }
 
 .service-row {
-  border-bottom: 1px solid $color-border;
-  padding: 2.5rem 0;
   display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
-  transition: background-color $transition-fast;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid rgba($color-primary, 0.16);
+  transition:
+    transform $transition-fast,
+    background-color $transition-fast;
 
   @include md {
-    grid-template-columns: 3.5rem 1fr 17.5rem auto;
-    gap: 2rem;
+    grid-template-columns: 4rem minmax(0, 1fr) 19rem 2rem;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   &:hover {
-    background-color: rgba($color-ember, 0.04);
+    background-color: rgba($color-primary, 0.05);
+    transform: translateX(6px);
   }
 
   &__num {
-    font-family: $font-display;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: $color-ember;
-    letter-spacing: $tracking-wide;
+    color: rgba($color-primary, 0.58);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: $tracking-widest;
+    text-transform: uppercase;
   }
-
-  &__body {}
 
   &__name {
     font-family: $font-display;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: $tracking-tight;
-    color: $color-primary;
-    line-height: 1.2;
-
-    @include md {
-      font-size: 1.5rem;
-    }
+    line-height: 1.02;
+    letter-spacing: -0.05em;
   }
 
   &__badge {
-    display: inline-block;
-    margin-top: 0.5rem;
-    background-color: $color-ember;
-    color: $color-bg;
-    font-family: $font-display;
-    font-size: 0.5625rem;
-    font-weight: 700;
+    display: inline-flex;
+    width: fit-content;
+    margin-top: 0.85rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background-color: $color-primary;
+    color: $color-ink;
+    font-size: 0.65rem;
+    font-weight: 600;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
-    padding: 0.375rem 0.625rem;
   }
 
   &__desc {
-    display: none;
-    font-family: $font-body;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: $color-subtle;
-
-    @include md {
-      display: block;
-    }
+    color: rgba($color-primary, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.65;
   }
 
   &__arrow {
-    font-family: $font-body;
-    font-size: 1.25rem;
-    color: rgba($color-primary, 0.15);
-    transition: color $transition-fast, transform $transition-fast;
-
-    .service-row:hover & {
-      color: $color-ember;
-      transform: translate(4px, -4px);
-    }
+    color: rgba($color-primary, 0.38);
+    font-size: 1.4rem;
+    justify-self: end;
+    transition:
+      color $transition-fast,
+      transform $transition-fast;
   }
 }

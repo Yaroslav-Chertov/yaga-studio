@@ -16,8 +16,8 @@ function FadeIn({ children, delay = 0 }: FadeInProps) {
     <div
       ref={ref}
       style={{
-        opacity:    inView ? 1 : 0,
-        transform:  inView ? "translateY(0)" : "translateY(28px)",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(28px)",
         transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
       }}
     >
@@ -63,24 +63,23 @@ export default function About() {
           <FadeIn delay={0.15}>
             <p className="about__text">
               YAGA — студия без отделов, менеджеров и испорченного телефона.{" "}
-              <strong>Ярослав (разработка) и Галина (UX/UI)</strong> работают с
-              вами напрямую — от брифа до деплоя.
+              <strong>Ярослав (разработка) и Галина (UX/UI)</strong> работают с вами
+              напрямую — от брифа до деплоя.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <p className="about__text">
-              Мы из Петербурга, работаем из Белграда, берём проекты по всему
-              миру. Крупные агентства тратят ваш бюджет на структуру.{" "}
+              Мы из Петербурга, работаем из Белграда, берём проекты по всему миру. Крупные
+              агентства тратят ваш бюджет на структуру.{" "}
               <strong>Мы тратим его на результат.</strong>
             </p>
           </FadeIn>
 
           <FadeIn delay={0.25}>
             <p className="about__text">
-              Сейчас хорошее время для смелых решений — рынок оптимизирует
-              бюджеты, а нам не нужно содержать этажи. Уровень senior-команды
-              по адекватной цене.
+              Сейчас хорошее время для смелых решений — рынок оптимизирует бюджеты, а нам
+              не нужно содержать этажи. Уровень senior-команды по адекватной цене.
             </p>
           </FadeIn>
 

@@ -1,48 +1,61 @@
 @use "../variables" as *;
-@use "../mixins" as *;
 
 .footer {
-  padding: 2.5rem $section-padding-x;
-  border-top: 1px solid $color-border;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.25rem;
+  display: grid;
+  gap: 2rem;
+  padding: 2rem $section-padding-x 2.5rem;
+  border-top: 1px solid rgba($color-primary, 0.16);
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  &__intro {
+    display: grid;
+    gap: 0.8rem;
+    max-width: 28rem;
+  }
 
   &__logo {
     font-family: $font-display;
-    font-weight: 900;
-    font-size: 1.125rem;
-    letter-spacing: $tracking-tight;
-    color: $color-primary;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+  }
 
-    &-accent {
-      color: $color-ember;
+  &__copy {
+    color: rgba($color-primary, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  &__meta {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+
+    @media (min-width: 900px) {
+      justify-items: end;
     }
   }
 
   &__links {
     display: flex;
-    gap: 1.75rem;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
   }
 
   &__link {
-    font-family: $font-body;
-    font-size: 0.75rem;
+    color: rgba($color-primary, 0.8);
+    font-size: 0.72rem;
+    font-weight: 500;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
-    color: $color-subtle;
-    transition: color $transition-fast;
-
-    &:hover {
-      color: $color-primary;
-    }
   }
 
-  &__copy {
-    font-family: $font-body;
-    font-size: 0.75rem;
-    color: rgba($color-subtle, 0.5);
+  &__caption {
+    color: rgba($color-primary, 0.54);
+    font-size: 0.78rem;
   }
 }

@@ -6,30 +6,30 @@ import { useInView } from "framer-motion";
 const steps = [
   {
     timing: "Неделя 1–2",
-    name:   "Погружение & ТЗ",
-    desc:   "Изучаем материалы, исследуем рынок и конкурентов. Фиксируем требования, архитектуру и критерии приёмки. Нет ТЗ — нет сюрпризов в конце.",
+    name: "Погружение & ТЗ",
+    desc: "Изучаем материалы, исследуем рынок и конкурентов. Фиксируем требования, архитектуру и критерии приёмки. Нет ТЗ — нет сюрпризов в конце.",
   },
   {
     timing: "Неделя 3–8",
-    name:   "UX & Прототип",
-    desc:   "Пользовательские сценарии, архитектура продукта, вайрфреймы. Согласовываем структуру и логику до старта UI — чтобы не переделывать.",
+    name: "UX & Прототип",
+    desc: "Пользовательские сценарии, архитектура продукта, вайрфреймы. Согласовываем структуру и логику до старта UI — чтобы не переделывать.",
   },
   {
     timing: "Неделя 9–16",
-    name:   "Дизайн & Разработка",
-    desc:   "UI параллельно с frontend. Backend и интеграции. Дизайнер и разработчик в одной команде — синхронизация без потерь.",
+    name: "Дизайн & Разработка",
+    desc: "UI параллельно с frontend. Backend и интеграции. Дизайнер и разработчик в одной команде — синхронизация без потерь.",
   },
   {
     timing: "Неделя 17–18",
-    name:   "Запуск & Передача",
-    desc:   "Тестирование, деплой, финальная проверка. Передаём доступы, документацию, рекомендации. Поддержка — по договорённости.",
+    name: "Запуск & Передача",
+    desc: "Тестирование, деплой, финальная проверка. Передаём доступы, документацию, рекомендации. Поддержка — по договорённости.",
   },
 ];
 
 type Step = (typeof steps)[0];
 
 function StepRow({ step, index }: { step: Step; index: number }) {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
@@ -37,8 +37,8 @@ function StepRow({ step, index }: { step: Step; index: number }) {
       ref={ref}
       className="process-step"
       style={{
-        opacity:    inView ? 1 : 0,
-        transform:  inView ? "none" : "translateY(24px)",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "none" : "translateY(24px)",
         transition: `opacity 0.55s ease ${index * 0.1}s, transform 0.55s ease ${index * 0.1}s`,
       }}
     >
@@ -51,7 +51,7 @@ function StepRow({ step, index }: { step: Step; index: number }) {
 
 export default function Process() {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const inView   = useInView(titleRef, { once: true });
+  const inView = useInView(titleRef, { once: true });
 
   return (
     <section id="process" className="process">
@@ -61,8 +61,8 @@ export default function Process() {
         ref={titleRef}
         className="process__heading"
         style={{
-          opacity:    inView ? 1 : 0,
-          transform:  inView ? "none" : "translateY(20px)",
+          opacity: inView ? 1 : 0,
+          transform: inView ? "none" : "translateY(20px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >

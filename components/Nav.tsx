@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const links = [
-  { href: "#about",    label: "О нас" },
+  { href: "#about", label: "О нас" },
   { href: "#services", label: "Услуги" },
-  { href: "#process",  label: "Процесс" },
-  { href: "#why",      label: "Почему мы" },
+  { href: "#process", label: "Процесс" },
+  { href: "#why", label: "Почему мы" },
 ];
 
 export default function Nav() {
@@ -21,9 +21,12 @@ export default function Nav() {
 
   return (
     <nav className={`nav${scrolled ? " nav--scrolled" : ""}`}>
-      <Link href="#" className="nav__logo">
-        YA<span className="nav__logo-accent">GA</span>
-      </Link>
+      <div className="nav__brand">
+        <Link href="#" className="nav__logo">
+          YAGA
+        </Link>
+        <span className="nav__status">Design / Code</span>
+      </div>
 
       <ul className="nav__list">
         {links.map((l) => (

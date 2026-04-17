@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 
 export default function Cursor() {
-  const dotRef  = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const pos     = useRef({ mx: 0, my: 0, rx: 0, ry: 0 });
+  const pos = useRef({ mx: 0, my: 0, rx: 0, ry: 0 });
   const hovering = useRef(false);
 
   useEffect(() => {
@@ -17,8 +17,12 @@ export default function Cursor() {
       }
     };
 
-    const onEnter = () => { hovering.current = true;  };
-    const onLeave = () => { hovering.current = false; };
+    const onEnter = () => {
+      hovering.current = true;
+    };
+    const onLeave = () => {
+      hovering.current = false;
+    };
 
     document.addEventListener("mousemove", onMove);
 
@@ -38,8 +42,8 @@ export default function Cursor() {
       if (ringRef.current) {
         const size = hovering.current ? 52 : 34;
         ringRef.current.style.transform = `translate(${pos.current.rx - size / 2}px, ${pos.current.ry - size / 2}px)`;
-        ringRef.current.style.width     = `${size}px`;
-        ringRef.current.style.height    = `${size}px`;
+        ringRef.current.style.width = `${size}px`;
+        ringRef.current.style.height = `${size}px`;
       }
       raf = requestAnimationFrame(animate);
     };
@@ -53,7 +57,7 @@ export default function Cursor() {
 
   return (
     <>
-      <div ref={dotRef}  className="cursor__dot"  />
+      <div ref={dotRef} className="cursor__dot" />
       <div ref={ringRef} className="cursor__ring" />
     </>
   );

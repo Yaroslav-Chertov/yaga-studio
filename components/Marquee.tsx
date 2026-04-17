@@ -19,6 +19,7 @@ function MarqueeItem({ label }: { label: string }) {
 }
 
 export default function Marquee() {
+  // Quadruple items so the seamless loop works at any screen width
   const doubled = [...items, ...items, ...items, ...items];
 
   return (
