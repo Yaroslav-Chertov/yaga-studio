@@ -2,7 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Onest:wght@300;400;500&display=swap");
 
-// ─── Reset / Base ─────────────────────────────────────────────────────────────
 *,
 *::before,
 *::after {
@@ -19,8 +18,16 @@ html {
 body {
   min-width: 320px;
   background:
-    radial-gradient(circle at top left, rgba($color-primary, 0.14), transparent 28%),
-    radial-gradient(circle at top right, rgba($color-wine, 0.16), transparent 26%),
+    radial-gradient(
+      circle at top left,
+      rgba($color-primary, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba($color-wine, 0.16),
+      transparent 26%
+    ),
     linear-gradient(
       180deg,
       color-mix(in srgb, $color-bg 92%, white 8%) 0%,
@@ -59,13 +66,11 @@ ol {
   list-style: none;
 }
 
-// ─── Selection ────────────────────────────────────────────────────────────────
 ::selection {
   background: $color-primary;
   color: $color-ink;
 }
 
-// ─── Scrollbar ────────────────────────────────────────────────────────────────
 ::-webkit-scrollbar {
   width: 4px;
 }

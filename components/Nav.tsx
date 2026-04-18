@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const links = [
-  { href: "#about", label: "О нас" },
   { href: "#services", label: "Услуги" },
   { href: "#process", label: "Процесс" },
   { href: "#why", label: "Почему мы" },
@@ -25,7 +24,7 @@ export default function Nav() {
         <Link href="#" className="nav__logo">
           YAGA
         </Link>
-        <span className="nav__status">Design / Code</span>
+        <span className="nav__status">Studio</span>
       </div>
 
       <ul className="nav__list">

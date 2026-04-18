@@ -1,6 +1,5 @@
 @use "variables" as *;
 
-// ─── Responsive ───────────────────────────────────────────────────────────────
 @mixin md {
   @media (min-width: #{$bp-md}) {
     @content;
@@ -19,7 +18,6 @@
   }
 }
 
-// ─── Typography helpers ───────────────────────────────────────────────────────
 @mixin label {
   font-family: $font-body;
   font-size: 0.6875rem; // 11px
@@ -37,7 +35,6 @@
   font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-// ─── Button ───────────────────────────────────────────────────────────────────
 @mixin btn-primary {
   display: inline-flex;
   align-items: center;
@@ -93,13 +90,11 @@
   }
 }
 
-// ─── Section layout ───────────────────────────────────────────────────────────
 @mixin section-base {
   padding: $section-padding-y $section-padding-x;
   border-top: 1px solid rgba($color-primary, 0.16);
 }
 
-// ─── Ghost text (decorative large background text) ────────────────────────────
 @mixin ghost-text($size) {
   font-family: $font-display;
   font-weight: 800;
@@ -113,7 +108,6 @@
   pointer-events: none;
 }
 
-// ─── Glow decoration ──────────────────────────────────────────────────────────
 @mixin radial-glow($size: 600px, $opacity: 0.06) {
   position: absolute;
   top: 50%;
