@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 const heroTags = [
   "Brand systems",
   "Digital products",
@@ -28,26 +26,16 @@ const ArrowIcon = () => (
 );
 
 export default function Hero() {
-  const bgWordRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      if (!bgWordRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 18;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      bgWordRef.current.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
   return (
     <section className="hero">
-      <span ref={bgWordRef} className="hero__ghost" aria-hidden>
-        YAGA
-      </span>
+      <div className="hero__backdrop" aria-hidden>
+        <span className="hero__ghost hero__ghost--main">YAGA</span>
+        <span className="hero__ghost hero__ghost--shadow">YAGA</span>
+      </div>
 
       <div className="hero__glow" aria-hidden />
+      <div className="hero__orb hero__orb--one" aria-hidden />
+      <div className="hero__orb hero__orb--two" aria-hidden />
 
       <div className="hero__eyebrow">
         <span className="hero__eyebrow-line" />
@@ -61,15 +49,19 @@ export default function Hero() {
           Создаём смелые
           <br />
           цифровые продукты
-          <br />
           <em className="hero__heading-accent">для амбициозных брендов</em>
         </h1>
 
-        <div className="hero__panel">
+        <aside className="hero__panel">
+          <div className="hero__panel-meta">
+            <span className="hero__panel-kicker">YAGA / 2026</span>
+            <span className="hero__panel-line" />
+          </div>
+
           <p className="hero__description">
-            Бутиковая студия без лишних звеньев. Делаем интерфейсы, брендинг и разработку
-            так, чтобы продукт выглядел уверенно, говорил ясно и запускался без потерь
-            между дизайном и кодом.
+            Бутиковая студия без лишних звеньев. Делаем интерфейсы, брендинг и
+            разработку так, чтобы продукт выглядел уверенно, говорил ясно и
+            запускался без потерь между дизайном и кодом.
           </p>
 
           <ul className="hero__tags" aria-label="Ключевые направления">
@@ -79,7 +71,7 @@ export default function Hero() {
               </li>
             ))}
           </ul>
-        </div>
+        </aside>
       </div>
 
       <div className="hero__bottom">
