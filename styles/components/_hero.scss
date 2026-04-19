@@ -1,25 +1,14 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 
-@keyframes hero-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -12px, 0);
-  }
-}
-
 @keyframes hero-drift {
   0%,
   100% {
-    transform: rotate(0deg) scale(1);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
 
   50% {
-    transform: rotate(8deg) scale(1.04);
+    transform: translate3d(0, -10px, 0) rotate(4deg);
   }
 }
 
@@ -29,7 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 8.5rem $section-padding-x 3rem;
+  padding: 8rem $section-padding-x 2.6rem;
   overflow: hidden;
   isolation: isolate;
 
@@ -37,74 +26,33 @@
     content: "";
     position: absolute;
     inset: 1rem;
-    border: 1px solid rgba($color-primary, 0.16);
+    border: 1px solid rgba($color-primary, 0.14);
     pointer-events: none;
   }
 
-  &__backdrop {
+  &__gridline {
     position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
+    background: rgba($color-primary, 0.1);
 
-  &__ghost {
-    position: absolute;
-    right: clamp(-2rem, -1vw, 0rem);
-    top: clamp(5rem, 12vw, 9rem);
-    font-family: $font-display;
-    font-size: clamp(7rem, 18vw, 16rem);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.08em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    user-select: none;
-
-    &--main {
-      color: rgba($color-primary, 0.08);
-      -webkit-text-stroke: 1px rgba($color-primary, 0.18);
-      animation: hero-float 8s ease-in-out infinite;
+    &--v {
+      top: 0;
+      bottom: 0;
+      right: clamp(19rem, 28vw, 25rem);
+      width: 1px;
     }
 
-    &--shadow {
-      top: calc(clamp(5rem, 12vw, 9rem) + 1.1rem);
-      right: clamp(-1rem, 1vw, 1.5rem);
-      color: transparent;
-      -webkit-text-stroke: 1px rgba($color-ember, 0.18);
-      opacity: 0.55;
-      filter: blur(1px);
-    }
-  }
-
-  &__stamp {
-    position: absolute;
-    padding: 0.45rem 0.75rem;
-    border: 1px solid rgba($color-primary, 0.18);
-    border-radius: 999px;
-    background: rgba($color-primary, 0.05);
-    color: rgba($color-primary, 0.72);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: $tracking-widest;
-    text-transform: uppercase;
-    backdrop-filter: blur(10px);
-
-    &--top {
-      top: 7.2rem;
-      right: clamp(1.5rem, 7vw, 7rem);
-    }
-
-    &--bottom {
-      top: clamp(12rem, 23vw, 18rem);
-      right: clamp(12rem, 17vw, 18rem);
+    &--h {
+      left: 0;
+      right: 0;
+      top: clamp(12rem, 21vw, 14.5rem);
+      height: 1px;
     }
   }
 
   &__glow {
-    @include radial-glow(760px, 0.16);
-    top: 18%;
-    left: 78%;
+    @include radial-glow(720px, 0.14);
+    top: 16%;
+    left: 76%;
     z-index: 0;
   }
 
@@ -117,24 +65,24 @@
 
     &--one {
       top: 12%;
-      right: 14%;
-      width: 18rem;
-      height: 18rem;
+      right: 11%;
+      width: 16rem;
+      height: 16rem;
       background: radial-gradient(
         circle,
         rgba($color-primary, 0.12) 0%,
-        rgba($color-primary, 0.03) 45%,
-        transparent 72%
+        rgba($color-primary, 0.02) 48%,
+        transparent 74%
       );
-      animation: hero-drift 14s ease-in-out infinite;
+      animation: hero-drift 12s ease-in-out infinite;
     }
 
     &--two {
-      top: 28%;
-      right: 6%;
-      width: 7rem;
-      height: 7rem;
-      border: 1px solid rgba($color-primary, 0.12);
+      top: 29%;
+      right: 7%;
+      width: 6rem;
+      height: 6rem;
+      border: 1px solid rgba($color-primary, 0.14);
       background: rgba($color-primary, 0.03);
       backdrop-filter: blur(6px);
     }
@@ -146,10 +94,9 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2.2rem;
+    margin-bottom: 1.5rem;
 
     &-line {
-      display: block;
       width: 2.4rem;
       height: 1px;
       background-color: rgba($color-primary, 0.7);
@@ -164,50 +111,62 @@
     position: relative;
     z-index: 1;
     display: grid;
-    gap: 2rem;
+    gap: 1.2rem;
 
     @include lg {
-      grid-template-columns: minmax(0, 1.22fr) minmax(28rem, 0.92fr);
-      align-items: end;
-      gap: 2.5rem;
+      grid-template-columns: minmax(0, 1.45fr) minmax(22rem, 0.9fr);
+      align-items: start;
+      gap: 1.35rem;
+    }
+
+    @media (min-width: 1360px) {
+      grid-template-columns: minmax(0, 1.52fr) minmax(24rem, 0.88fr);
+      gap: 1.5rem;
     }
   }
 
   &__heading {
-    max-width: 11ch;
+    max-width: 16ch;
     font-family: $font-display;
     font-weight: 800;
-    font-size: clamp(3.4rem, 8vw, 8.6rem);
+    font-size: clamp(3.2rem, 6.8vw, 7.9rem);
     line-height: 0.9;
-    letter-spacing: -0.07em;
+    letter-spacing: -0.082em;
+    text-wrap: balance;
 
     &-accent {
       display: block;
-      margin-top: 0.35rem;
+      margin-top: 0.18rem;
       font-style: normal;
       color: rgba($color-primary, 0.76);
+    }
+
+    @media (min-width: 1180px) {
+      max-width: 17ch;
+      font-size: clamp(3.5rem, 6vw, 8.2rem);
     }
   }
 
   &__panel {
     position: relative;
     display: grid;
-    gap: 1.35rem;
-    padding: 1.5rem;
-    border: 1px solid rgba($color-primary, 0.18);
-    border-radius: 1.5rem;
+    gap: 0.95rem;
+    align-content: start;
+    padding: 1.15rem 1.2rem;
+    border: 1px solid rgba($color-primary, 0.16);
+    border-radius: 1.2rem;
     background:
-      linear-gradient(135deg, rgba($color-primary, 0.12), transparent 55%),
+      linear-gradient(135deg, rgba($color-primary, 0.1), transparent 58%),
       linear-gradient(
         180deg,
-        rgba($color-shadow, 0.22),
-        rgba($color-shadow, 0.1)
+        rgba($color-shadow, 0.18),
+        rgba($color-shadow, 0.08)
       ),
-      rgba($color-surface, 0.24);
+      rgba($color-surface, 0.2);
     box-shadow:
-      0 24px 60px rgba($color-ink, 0.12),
-      inset 0 1px 0 rgba($color-primary, 0.08);
-    backdrop-filter: blur(18px);
+      0 18px 40px rgba($color-ink, 0.08),
+      inset 0 1px 0 rgba($color-primary, 0.07);
+    backdrop-filter: blur(16px);
 
     &::before {
       content: "";
@@ -217,9 +176,9 @@
       padding: 1px;
       background: linear-gradient(
         135deg,
-        rgba($color-primary, 0.28),
-        rgba($color-primary, 0.06) 38%,
-        rgba($color-ember, 0.22) 100%
+        rgba($color-primary, 0.24),
+        rgba($color-primary, 0.04) 40%,
+        rgba($color-ember, 0.18) 100%
       );
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -233,15 +192,15 @@
   &__panel-meta {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.8rem;
   }
 
   &__panel-kicker {
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
-    color: rgba($color-primary, 0.68);
+    color: rgba($color-primary, 0.66);
     white-space: nowrap;
   }
 
@@ -250,33 +209,35 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba($color-primary, 0.24),
+      rgba($color-primary, 0.22),
       rgba($color-primary, 0.04)
     );
   }
 
   &__description {
-    max-width: 34rem;
-    font-size: clamp(1rem, 1.15vw, 1.12rem);
-    line-height: 1.75;
-    color: rgba($color-primary, 0.94);
-    text-wrap: balance;
+    max-width: none;
+    font-size: clamp(0.96rem, 0.96vw, 1.04rem);
+    line-height: 1.58;
+    color: rgba($color-primary, 0.93);
+    text-wrap: pretty;
   }
 
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.5rem;
   }
 
   &__tag {
-    padding: 0.55rem 0.85rem;
-    border: 1px solid rgba($color-primary, 0.16);
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgba($color-primary, 0.14);
     border-radius: 999px;
     background: rgba($color-primary, 0.04);
-    color: rgba($color-primary, 0.86);
-    font-size: 0.78rem;
-    letter-spacing: 0.03em;
+    color: rgba($color-primary, 0.84);
+    font-size: 0.73rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
   &__bottom {
@@ -285,19 +246,18 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.3rem;
     flex-wrap: wrap;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba($color-primary, 0.16);
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba($color-primary, 0.14);
   }
 
   &__facts {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    width: min(100%, 48rem);
-    align-items: start;
+    gap: 0.8rem;
+    width: min(100%, 46rem);
 
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
@@ -306,24 +266,24 @@
 
   &__fact {
     display: grid;
-    gap: 0.35rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba($color-primary, 0.18);
+    gap: 0.3rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid rgba($color-primary, 0.16);
   }
 
   &__fact-value {
     font-family: $font-display;
-    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-size: clamp(1.65rem, 3.6vw, 2.8rem);
     font-weight: 800;
     letter-spacing: -0.06em;
     line-height: 1;
   }
 
   &__fact-label {
-    max-width: 16rem;
-    color: rgba($color-primary, 0.78);
-    font-size: 0.85rem;
-    line-height: 1.5;
+    max-width: 15rem;
+    color: rgba($color-primary, 0.76);
+    font-size: 0.82rem;
+    line-height: 1.42;
   }
 
   &__actions {
@@ -337,80 +297,71 @@
     @include btn-primary;
   }
 
-  &__scroll-hint {
-    color: rgba($color-primary, 0.62);
-    font-size: 0.68rem;
-    letter-spacing: $tracking-widest;
-    text-transform: uppercase;
-  }
-
   &__divider {
     position: absolute;
     bottom: 0;
     left: $section-padding-x;
     right: $section-padding-x;
     height: 1px;
-    background-color: rgba($color-primary, 0.16);
+    background-color: rgba($color-primary, 0.14);
   }
 
   @media (max-width: 1024px) {
     min-height: auto;
-    padding-top: 7.5rem;
+    padding-top: 7rem;
 
-    &__ghost {
-      right: -0.5rem;
-      top: 6.5rem;
-      font-size: clamp(5.5rem, 22vw, 10rem);
+    &__gridline--v {
+      right: 9rem;
     }
 
-    &__stamp--top {
-      top: 5.8rem;
-      right: 1.25rem;
+    &__gridline--h {
+      top: 10.4rem;
     }
 
-    &__stamp--bottom {
-      top: 11rem;
-      right: 6rem;
+    &__top {
+      gap: 1rem;
     }
 
     &__panel {
-      max-width: 44rem;
+      max-width: 50rem;
     }
   }
 
   @media (max-width: 767px) {
-    padding: 7rem $section-padding-x 2.25rem;
+    padding: 6.8rem $section-padding-x 2.1rem;
 
     &::before {
       inset: 0.6rem;
     }
 
-    &__ghost {
-      top: 5.5rem;
-      right: -1rem;
-
-      &--shadow {
-        display: none;
-      }
+    &__gridline {
+      display: none;
     }
 
-    &__stamp {
+    &__orb--two {
       display: none;
     }
 
     &__heading {
-      max-width: 9ch;
-      font-size: clamp(2.8rem, 14vw, 4.8rem);
+      max-width: 10.5ch;
+      font-size: clamp(2.7rem, 13.2vw, 4.6rem);
+      line-height: 0.92;
     }
 
     &__panel {
-      padding: 1.15rem;
-      border-radius: 1.1rem;
+      gap: 0.85rem;
+      padding: 1rem;
+      border-radius: 1.05rem;
     }
 
     &__description {
-      max-width: none;
-      font-size: 0.98rem;
+      font-size: 0.95rem;
+      line-height: 1.56;
+    }
+
+    &__bottom {
+      margin-top: 1.35rem;
+      padding-top: 1.1rem;
     }
 
     &__actions {
@@ -420,10 +371,6 @@
 
     &__cta {
       width: 100%;
-    }
-
-    &__scroll-hint {
-      text-align: center;
     }
   }
 }

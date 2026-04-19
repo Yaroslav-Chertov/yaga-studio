@@ -1,17 +1,18 @@
 "use client";
 
 const heroTags = [
-  "Брендинг",
+  "Бренд",
   "Исследования",
-  "UX/UI",
+  "Продуктовый UX",
+  "Интерфейсы",
   "Разработка",
-  "AI",
+  "AI-инструменты",
 ] as const;
 
 const heroFacts = [
   { value: "5+", label: "лет работы с цифровыми продуктами" },
-  { value: "1", label: "единая логика от идеи до реализации" },
-  { value: "∞", label: "внимания к деталям" },
+  { value: "1", label: "единая команда от идеи до запуска" },
+  { value: "∞", label: "внимание к качеству и деталям" },
 ] as const;
 
 const ArrowIcon = () => (
@@ -29,11 +30,6 @@ const ArrowIcon = () => (
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="hero__backdrop" aria-hidden>
-        <span className="hero__ghost hero__ghost--main">YAGA</span>
-        <span className="hero__ghost hero__ghost--shadow">YAGA</span>
-      </div>
-
       <div className="hero__glow" aria-hidden />
       <div className="hero__orb hero__orb--one" aria-hidden />
       <div className="hero__orb hero__orb--two" aria-hidden />
@@ -41,21 +37,19 @@ export default function Hero() {
       <div className="hero__eyebrow">
         <span className="hero__eyebrow-line" />
         <span className="hero__eyebrow-label">
-          Студия дизайна и разработки полного цикла
+          Бренд, продукт и разработка в одной связке
         </span>
       </div>
 
       <div className="hero__top">
         <h1 className="hero__heading">
-          Создаём смелые
-          <br />
-          цифровые продукты
-          <em className="hero__heading-accent">для амбициозных брендов</em>
+          Создаём цифровые продукты, которые
+          <em className="hero__heading-accent">двигают бренд вперёд</em>
         </h1>
 
         <aside className="hero__panel">
           <div className="hero__panel-meta">
-            <span className="hero__panel-kicker">YAGA / 2026</span>
+            <span className="hero__panel-kicker">От идеи до релиза</span>
             <span className="hero__panel-line" />
           </div>
 
