@@ -297,6 +297,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     width: min(100%, 48rem);
+    align-items: start;
 
     @media (max-width: 900px) {
       grid-template-columns: 1fr;

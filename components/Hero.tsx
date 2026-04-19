@@ -1,16 +1,17 @@
 "use client";
 
 const heroTags = [
-  "Brand systems",
-  "Digital products",
-  "Web platforms",
-  "AI tools",
+  "Брендинг",
+  "Исследования",
+  "UX/UI",
+  "Разработка",
+  "AI",
 ] as const;
 
 const heroFacts = [
-  { value: "2", label: "senior-специалиста в ядре" },
-  { value: "1", label: "команда на проекте без потерь в коммуникации" },
-  { value: "∞", label: "внимания к качеству деталей" },
+  { value: "5+", label: "лет работы с цифровыми продуктами" },
+  { value: "1", label: "единая логика от идеи до реализации" },
+  { value: "∞", label: "внимания к деталям" },
 ] as const;
 
 const ArrowIcon = () => (
@@ -40,7 +41,7 @@ export default function Hero() {
       <div className="hero__eyebrow">
         <span className="hero__eyebrow-line" />
         <span className="hero__eyebrow-label">
-          Независимая студия дизайна и разработки
+          Студия дизайна и разработки полного цикла
         </span>
       </div>
 
@@ -59,9 +60,9 @@ export default function Hero() {
           </div>
 
           <p className="hero__description">
-            Бутиковая студия без лишних звеньев. Делаем интерфейсы, брендинг и
-            разработку так, чтобы продукт выглядел уверенно, говорил ясно и
-            запускался без потерь между дизайном и кодом.
+            Формируем цифровые продукты как системы, в&nbsp;которых визуальный
+            язык, интерфейсы и&nbsp;реализация развиваются вместе&nbsp;&mdash;
+            и&nbsp;сохраняют цельность на&nbsp;всём пути до&nbsp;релиза.
           </p>
 
           <ul className="hero__tags" aria-label="Ключевые направления">
@@ -89,7 +90,6 @@ export default function Hero() {
             Обсудить проект
             <ArrowIcon />
           </a>
-          <span className="hero__scroll-hint">↓ прокрути</span>
         </div>
       </div>
 

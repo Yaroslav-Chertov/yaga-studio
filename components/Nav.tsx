@@ -37,7 +37,7 @@ export default function Nav() {
         ))}
         <li>
           <a href="#contact" data-hover className="nav__cta">
-            Обсудить проект
+            Заявка
           </a>
         </li>
       </ul>
