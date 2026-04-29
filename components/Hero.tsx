@@ -10,8 +10,7 @@ const heroTags = [
 ] as const;
 
 const heroFacts = [
-  { value: "5+", label: "лет работы с цифровыми продуктами" },
-  { value: "1", label: "единая команда от идеи до запуска" },
+  { value: "5+", label: "лет практики с цифровыми продуктами" },
   { value: "∞", label: "внимание к качеству и деталям" },
 ] as const;
 
@@ -37,14 +36,16 @@ export default function Hero() {
       <div className="hero__eyebrow">
         <span className="hero__eyebrow-line" />
         <span className="hero__eyebrow-label">
-          Бренд, продукт и разработка в одной связке
+          Для бизнеса, которому важен уровень
         </span>
       </div>
 
       <div className="hero__top">
         <h1 className="hero__heading">
-          Создаём цифровые продукты, которые
-          <em className="hero__heading-accent">двигают бренд вперёд</em>
+          Создаём интерфейсы и&nbsp;сайты,
+          <em className="hero__heading-accent">
+            которые выглядят современно и&nbsp;убедительно
+          </em>
         </h1>
 
         <aside className="hero__panel">
@@ -54,9 +55,10 @@ export default function Hero() {
           </div>
 
           <p className="hero__description">
-            Формируем цифровые продукты как системы, в&nbsp;которых визуальный
-            язык, интерфейсы и&nbsp;реализация развиваются вместе&nbsp;&mdash;
-            и&nbsp;сохраняют цельность на&nbsp;всём пути до&nbsp;релиза.
+            Помогаем бизнесу собирать цельный образ: от&nbsp;исследований
+            и&nbsp;айдентики до&nbsp;интерфейсов и&nbsp;разработки. Создаём
+            решения, в&nbsp;которых эстетика работает на&nbsp;доверие,
+            а&nbsp;дизайн&nbsp;&mdash; на&nbsp;результат.
           </p>
 
           <ul className="hero__tags" aria-label="Ключевые направления">
