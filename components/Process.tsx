@@ -43,7 +43,7 @@ function StepRow({ step, index }: { step: Step; index: number }) {
       }}
     >
       <span className="process-step__timing">{step.timing}</span>
-      <p className="process-step__name">{step.name}</p>
+      <h3 className="process-step__name">{step.name}</h3>
       <p className="process-step__desc">{step.desc}</p>
     </div>
   );

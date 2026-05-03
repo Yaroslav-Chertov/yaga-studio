@@ -4,8 +4,8 @@ import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 const SERVICES = [
-  "Дзайн сайта",
-  "Дзайн мобильного приложения",
+  "Дизайн сайта",
+  "Дизайн мобильного приложения",
   "Разработка сайта",
   "Фирменный стиль",
   "UX-исследование",
@@ -115,10 +115,8 @@ export default function Contact() {
       const services = exists
         ? current.services.filter((item) => item !== service)
         : [...current.services, service];
-
       return { ...current, services };
     });
-
     setErrors((current) => ({ ...current, services: undefined }));
   };
 
@@ -131,18 +129,13 @@ export default function Contact() {
         ? (event.target as HTMLInputElement).checked
         : event.target.value;
 
-    setValues((current) => ({
-      ...current,
-      [name]: nextValue,
-    }));
-
+    setValues((current) => ({ ...current, [name]: nextValue }));
     setErrors((current) => ({ ...current, [name]: undefined }));
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextFile = event.target.files?.[0] ?? null;
     setFile(nextFile);
-
     setErrors((current) => ({
       ...current,
       file:
@@ -154,26 +147,17 @@ export default function Contact() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const nextErrors = validate(values, file);
     setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length) {
-      return;
-    }
+    if (Object.keys(nextErrors).length) return;
 
     setIsSubmitting(true);
-
     await new Promise((resolve) => setTimeout(resolve, 700));
-
     setSubmitted(true);
     setIsSubmitting(false);
     setValues(initialValues);
     setFile(null);
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   return (
@@ -232,21 +216,20 @@ export default function Contact() {
         ) : (
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <div className="contact__grid">
-              <fieldset
+
+              {/* Services */}
+              <div
                 className={`contact__field contact__field--full${
                   errors.services ? " is-invalid" : ""
                 }`}
               >
-                <legend className="contact__legend">
+                <span className="contact__field-label">
                   Какие услуги вас интересуют?
-                </legend>
-                <p className="contact__hint">
-                  Можно выбрать несколько вариантов
-                </p>
+                </span>
+                <span className="contact__hint">Можно выбрать несколько</span>
                 <div className="contact__choices">
                   {SERVICES.map((service) => {
                     const checked = values.services.includes(service);
-
                     return (
                       <label
                         key={service}
@@ -262,18 +245,19 @@ export default function Contact() {
                     );
                   })}
                 </div>
-                {errors.services ? (
+                {errors.services && (
                   <p className="contact__error">{errors.services}</p>
-                ) : null}
-              </fieldset>
+                )}
+              </div>
 
-              <fieldset
+              {/* Budget */}
+              <div
                 className={`contact__field contact__field--full${
                   errors.budget ? " is-invalid" : ""
                 }`}
               >
-                <legend className="contact__legend">Ваш бюджет</legend>
-                <p className="contact__hint">Выберите один вариант</p>
+                <span className="contact__field-label">Ваш бюджет</span>
+                <span className="contact__hint">Выберите один вариант</span>
                 <div className="contact__choices contact__choices--budget">
                   {BUDGETS.map((budget) => (
                     <label
@@ -293,32 +277,32 @@ export default function Contact() {
                     </label>
                   ))}
                 </div>
-                {errors.budget ? (
+                {errors.budget && (
                   <p className="contact__error">{errors.budget}</p>
-                ) : null}
-              </fieldset>
+                )}
+              </div>
 
+              {/* Message */}
               <label className="contact__field contact__field--full">
-                <span className="contact__legend">Кратко о задаче</span>
+                <span className="contact__field-label">Кратко о задаче</span>
                 <span className="contact__hint">Необязательно</span>
                 <textarea
                   name="message"
                   value={values.message}
                   onChange={handleInputChange}
-                  rows={6}
+                  rows={4}
                   placeholder="Расскажите, что хотите запустить, какие есть сроки и на каком этапе сейчас находится проект."
                 />
               </label>
 
+              {/* File upload */}
               <div
                 className={`contact__field contact__field--full${
                   errors.file ? " is-invalid" : ""
                 }`}
               >
-                <span className="contact__legend">Прикрепить файл</span>
-                <span className="contact__hint">
-                  Максимальный размер — 10 МБ
-                </span>
+                <span className="contact__field-label">Прикрепить файл</span>
+                <span className="contact__hint">Максимальный размер — 10 МБ</span>
                 <div className="contact__upload">
                   <input
                     ref={fileInputRef}
@@ -338,13 +322,14 @@ export default function Contact() {
                     {file ? file.name : "Файл не выбран"}
                   </span>
                 </div>
-                {errors.file ? (
+                {errors.file && (
                   <p className="contact__error">{errors.file}</p>
-                ) : null}
+                )}
               </div>
 
+              {/* Company */}
               <label className="contact__field">
-                <span className="contact__legend">Название компании</span>
+                <span className="contact__field-label">Название компании</span>
                 <span className="contact__hint">Необязательно</span>
                 <input
                   type="text"
@@ -355,8 +340,9 @@ export default function Contact() {
                 />
               </label>
 
+              {/* Name */}
               <label className="contact__field">
-                <span className="contact__legend">Имя</span>
+                <span className="contact__field-label">Имя</span>
                 <span className="contact__hint">Необязательно</span>
                 <input
                   type="text"
@@ -367,23 +353,27 @@ export default function Contact() {
                 />
               </label>
 
+              {/* Referral */}
               <label className="contact__field">
-                <span className="contact__legend">Откуда вы о нас узнали?</span>
+                <span className="contact__field-label">
+                  Откуда вы о нас узнали?
+                </span>
                 <span className="contact__hint">Необязательно</span>
                 <input
                   type="text"
                   name="referral"
                   value={values.referral}
                   onChange={handleInputChange}
-                  placeholder="Рекомендация, Behance, поиск, Telegram и другие источники"
+                  placeholder="Рекомендация, Behance, поиск, Telegram…"
                 />
               </label>
 
+              {/* Contact — required */}
               <label
                 className={`contact__field${errors.contact ? " is-invalid" : ""}`}
               >
-                <span className="contact__legend">
-                  Telegram или другой способ связи
+                <span className="contact__field-label">
+                  Telegram или способ связи
                 </span>
                 <span className="contact__hint">Обязательно</span>
                 <input
@@ -391,20 +381,19 @@ export default function Contact() {
                   name="contact"
                   value={values.contact}
                   onChange={handleInputChange}
-                  placeholder="Укажите ваш @username в Telegram или email"
+                  placeholder="@username в Telegram или email"
                   aria-invalid={Boolean(errors.contact)}
-                  aria-describedby={
-                    errors.contact ? "contact-error" : undefined
-                  }
+                  aria-describedby={errors.contact ? "contact-error" : undefined}
                 />
-                {errors.contact ? (
+                {errors.contact && (
                   <p id="contact-error" className="contact__error">
                     {errors.contact}
                   </p>
-                ) : null}
+                )}
               </label>
             </div>
 
+            {/* Consent */}
             <label
               className={`contact__consent${errors.consent ? " is-invalid" : ""}`}
             >
@@ -419,11 +408,11 @@ export default function Contact() {
                 данных и соглашаетесь с политикой конфиденциальности.
               </span>
             </label>
-            {errors.consent ? (
+            {errors.consent && (
               <p className="contact__error contact__error--consent">
                 {errors.consent}
               </p>
-            ) : null}
+            )}
 
             <div className="contact__footer">
               <p className="contact__note">

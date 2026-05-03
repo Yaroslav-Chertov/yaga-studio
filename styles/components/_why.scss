@@ -47,10 +47,15 @@
 
   &__banner {
     margin-top: 1rem;
-    padding: 1.5rem;
+    padding: 1.75rem 2rem;
     border: 1px solid rgba($color-primary, 0.16);
+    border-radius: $radius-md;
     background:
-      linear-gradient(135deg, rgba($color-primary, 0.08), rgba($color-wine, 0.16)),
+      linear-gradient(
+        135deg,
+        rgba($color-primary, 0.08),
+        rgba($color-wine, 0.16)
+      ),
       rgba($color-primary, 0.04);
   }
 
@@ -73,8 +78,9 @@
   flex-direction: column;
   gap: 0.9rem;
   min-height: 100%;
-  padding: 1.4rem;
+  padding: 1.5rem;
   border: 1px solid rgba($color-primary, 0.16);
+  border-radius: $radius-md;
   background: rgba($color-primary, 0.05);
   box-shadow: 0 20px 38px rgba($color-ink, 0.06);
 

@@ -15,10 +15,11 @@
   &__inner {
     position: relative;
     z-index: 1;
-    max-width: 82rem;
+    max-width: 72rem;
     margin: 0 auto;
-    padding: clamp(1.2rem, 3vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
     border: 1px solid rgba($color-primary, 0.18);
+    border-radius: $radius-lg;
     background:
       linear-gradient(
         180deg,
@@ -31,7 +32,7 @@
 
   &__intro {
     max-width: 46rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   &__label {
@@ -43,39 +44,47 @@
   &__heading {
     font-family: $font-display;
     font-weight: 800;
-    font-size: clamp(2.6rem, 6vw, 5.8rem);
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
     line-height: 0.92;
     letter-spacing: -0.06em;
   }
 
   &__lead {
     max-width: 35rem;
-    margin-top: 1rem;
+    margin-top: 0.85rem;
     color: rgba($color-primary, 0.78);
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.75;
   }
 
+  // ── form ──────────────────────────────────────────────────────────────────
+
   &__form {
     display: grid;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   &__grid {
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
 
     @include md {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
+  // Each field block: consistent look regardless of element type
   &__field {
     display: grid;
-    gap: 0.65rem;
-    padding: 1.15rem;
+    gap: 0.45rem;
+    padding: 0.9rem 1rem;
     border: 1px solid rgba($color-primary, 0.16);
+    border-radius: $radius-sm;
     background: rgba($color-primary, 0.04);
+
+    // Remove UA fieldset styles
+    margin: 0;
+    min-width: 0;
 
     &--full {
       @include md {
@@ -88,27 +97,32 @@
     }
   }
 
-  &__legend {
+  // Unified field label (works for both <legend> and <span>)
+  &__field-label {
     font-family: $font-display;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   &__hint {
-    color: rgba($color-primary, 0.62);
-    font-size: 0.82rem;
-    line-height: 1.5;
+    color: rgba($color-primary, 0.56);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-top: -0.1rem;
   }
 
   &__choices {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-top: 0.2rem;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
 
     &--budget {
       display: grid;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
 
       @include md {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -120,13 +134,13 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 2.9rem;
-    padding: 0.8rem 0.95rem;
+    min-height: 2.6rem;
+    padding: 0.6rem 0.85rem;
     border: 1px solid rgba($color-primary, 0.16);
-    border-radius: 999px;
+    border-radius: $radius-pill;
     background: rgba($color-primary, 0.03);
     color: rgba($color-primary, 0.78);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     line-height: 1.4;
     transition:
       border-color $transition-fast,
@@ -153,42 +167,45 @@
 
     &--budget {
       width: 100%;
-      border-radius: 1rem;
+      border-radius: $radius-sm;
     }
   }
 
   textarea,
   input[type="text"] {
     width: 100%;
-    border: 1px solid rgba($color-primary, 0.16);
-    background: rgba($color-primary, 0.04);
+    border: none;
+    border-top: 1px solid rgba($color-primary, 0.12);
+    background: transparent;
     color: $color-primary;
-    padding: 0.95rem 1rem;
+    padding: 0.55rem 0;
     outline: none;
+    font-size: 0.9rem;
     transition:
-      border-color $transition-fast,
-      background-color $transition-fast;
+      border-color $transition-fast;
 
     &::placeholder {
-      color: rgba($color-primary, 0.44);
+      color: rgba($color-primary, 0.38);
     }
 
     &:focus {
       border-color: rgba($color-primary, 0.38);
-      background: rgba($color-primary, 0.08);
     }
   }
 
   textarea {
-    min-height: 10rem;
+    min-height: 5rem;
     resize: vertical;
   }
+
+  // ── upload ────────────────────────────────────────────────────────────────
 
   &__upload {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
   }
 
   &__upload-input {
@@ -197,40 +214,50 @@
 
   &__upload-btn {
     @include btn-outline;
-    min-height: 3rem;
+    min-height: 2.6rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.82rem;
     background: transparent;
     cursor: pointer;
   }
 
   &__upload-name {
-    color: rgba($color-primary, 0.72);
-    font-size: 0.92rem;
+    color: rgba($color-primary, 0.62);
+    font-size: 0.85rem;
   }
+
+  // ── consent ───────────────────────────────────────────────────────────────
 
   &__consent {
     display: flex;
     align-items: flex-start;
-    gap: 0.85rem;
-    color: rgba($color-primary, 0.74);
-    font-size: 0.92rem;
-    line-height: 1.7;
+    gap: 0.75rem;
+    color: rgba($color-primary, 0.7);
+    font-size: 0.88rem;
+    line-height: 1.65;
 
     input {
-      width: 1.1rem;
-      height: 1.1rem;
-      margin-top: 0.2rem;
+      width: 1rem;
+      height: 1rem;
+      margin-top: 0.22rem;
+      flex-shrink: 0;
       accent-color: $color-primary;
     }
   }
 
+  // ── error ─────────────────────────────────────────────────────────────────
+
   &__error {
     color: rgba($color-primary, 0.9);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
+    margin-top: 0.15rem;
 
     &--consent {
-      margin-top: -0.5rem;
+      margin-top: -0.25rem;
     }
   }
+
+  // ── footer ────────────────────────────────────────────────────────────────
 
   &__footer {
     display: flex;
@@ -246,9 +273,9 @@
   }
 
   &__note {
-    max-width: 35rem;
-    color: rgba($color-primary, 0.72);
-    font-size: 0.92rem;
+    max-width: 32rem;
+    color: rgba($color-primary, 0.66);
+    font-size: 0.88rem;
     line-height: 1.65;
   }
 
@@ -263,6 +290,8 @@
     }
   }
 
+  // ── success ───────────────────────────────────────────────────────────────
+
   &__success {
     display: grid;
     gap: 1rem;
@@ -274,8 +303,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 3.2rem;
+    height: 3.2rem;
     border-radius: 50%;
     border: 1px solid rgba($color-primary, 0.24);
     background: rgba($color-primary, 0.08);
@@ -287,7 +316,7 @@
 
   &__success-title {
     font-family: $font-display;
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
     line-height: 0.98;
     letter-spacing: -0.05em;
@@ -296,6 +325,7 @@
   &__success-text {
     color: rgba($color-primary, 0.74);
     line-height: 1.7;
+    font-size: 0.95rem;
   }
 
   &__actions {

@@ -166,7 +166,7 @@
   &__preview-image {
     aspect-ratio: 4 / 3;
     border: 1px solid rgba($color-primary, 0.16);
-    border-radius: 1.5rem;
+    border-radius: $radius-lg;
     background:
       linear-gradient(135deg, $color-primary, $color-muted),
       linear-gradient(180deg, $color-surface, $color-bg);
@@ -219,7 +219,7 @@
     width: fit-content;
     padding: 0.75rem 1rem;
     border: 1px solid rgba($color-primary, 0.16);
-    border-radius: 999px;
+    border-radius: $radius-pill;
     color: rgba($color-primary, 0.82);
     background: rgba($color-primary, 0.04);
     transition:
@@ -267,7 +267,7 @@
 
   &__image {
     aspect-ratio: 16 / 9;
-    border-radius: 2rem;
+    border-radius: $radius-xl;
     border: 1px solid rgba($color-primary, 0.16);
     background:
       linear-gradient(135deg, $color-primary, $color-muted),
