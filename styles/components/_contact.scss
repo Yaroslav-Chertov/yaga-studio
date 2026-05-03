@@ -6,14 +6,6 @@
   padding: $section-padding-y $section-padding-x 6rem;
   overflow: hidden;
 
-  &__ghost {
-    @include ghost-text(clamp(7rem, 18vw, 15rem));
-    position: absolute;
-    top: 4rem;
-    right: -1rem;
-    opacity: 0.7;
-  }
-
   &__glow {
     @include radial-glow(660px, 0.18);
     top: 24%;
@@ -28,7 +20,11 @@
     padding: clamp(1.2rem, 3vw, 2rem);
     border: 1px solid rgba($color-primary, 0.18);
     background:
-      linear-gradient(180deg, rgba($color-primary, 0.09), rgba($color-primary, 0.03)),
+      linear-gradient(
+        180deg,
+        rgba($color-primary, 0.09),
+        rgba($color-primary, 0.03)
+      ),
       rgba($color-shadow, 0.2);
     box-shadow: 0 24px 60px rgba($color-ink, 0.1);
   }

@@ -47,28 +47,6 @@ export default function Hero() {
             которые выглядят современно и&nbsp;убедительно
           </em>
         </h1>
-
-        <aside className="hero__panel">
-          <div className="hero__panel-meta">
-            <span className="hero__panel-kicker">От идеи до релиза</span>
-            <span className="hero__panel-line" />
-          </div>
-
-          <p className="hero__description">
-            Помогаем бизнесу собирать цельный образ: от&nbsp;исследований
-            и&nbsp;айдентики до&nbsp;интерфейсов и&nbsp;разработки. Создаём
-            решения, в&nbsp;которых эстетика работает на&nbsp;доверие,
-            а&nbsp;дизайн&nbsp;&mdash; на&nbsp;результат.
-          </p>
-
-          <ul className="hero__tags" aria-label="Ключевые направления">
-            {heroTags.map((tag) => (
-              <li key={tag} className="hero__tag">
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </aside>
       </div>
 
       <div className="hero__bottom">

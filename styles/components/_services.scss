@@ -42,8 +42,8 @@
     background-color $transition-fast;
 
   @include md {
-    grid-template-columns: 4rem minmax(0, 1fr) 19rem 2rem;
-    align-items: center;
+    grid-template-columns: 10rem 16rem 1fr;
+    align-items: start;
     gap: 1.5rem;
   }
 

@@ -178,9 +178,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="contact">
-      <span className="contact__ghost" aria-hidden>
-        APPLY
-      </span>
       <div className="contact__glow" aria-hidden />
 
       <div
