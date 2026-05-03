@@ -66,16 +66,6 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
       </div>
 
       <p className="service-row__desc">{s.desc}</p>
-
-      <span
-        className="service-row__arrow"
-        style={{
-          color: hovered ? "#FF4D2E" : "rgba(241,237,231,0.15)",
-          transform: hovered ? "translate(4px,-4px)" : "none",
-        }}
-      >
-        ↗
-      </span>
     </div>
   );
 }
@@ -103,10 +93,6 @@ export default function Services() {
             делаем
           </h2>
         </div>
-        <p className="services__subtitle">
-          Подключаемся к&nbsp;проектам, где важно собрать сильный визуальный
-          образ, удобный пользовательский опыт и&nbsp;качественную реализацию.
-        </p>
       </div>
 
       <div className="services__list">
