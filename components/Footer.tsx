@@ -12,8 +12,8 @@ export default function Footer() {
           YAGA
         </a>
         <p className="footer__copy">
-          Дизайн, разработка и продуктовая упаковка для проектов, которым тесно в
-          безопасных решениях.
+          Делаем интерфейсы и&nbsp;продукты, которые выглядят уверенно
+          и&nbsp;работают на&nbsp;результат.
         </p>
       </div>
 
@@ -28,7 +28,9 @@ export default function Footer() {
           ))}
         </ul>
 
-        <p className="footer__caption">© 2026 YAGA Studio · Белград — Петербург</p>
+        <p className="footer__caption">
+          © 2026 YAGA Studio · Белград — Петербург
+        </p>
       </div>
     </footer>
   );
