@@ -3,6 +3,16 @@
 
 .services {
   @include section-base;
+  overflow: clip;
+
+  &::after {
+    content: "Services";
+    position: absolute;
+    top: 2.4rem;
+    right: clamp(1rem, 4vw, 3rem);
+    @include ghost-text(clamp(3rem, 9vw, 8rem));
+    opacity: 0.28;
+  }
 
   &__label {
     @include label;
@@ -24,6 +34,13 @@
   &__heading {
     @include section-heading;
     max-width: 8ch;
+  }
+
+  &__intro {
+    max-width: 23rem;
+    color: rgba($color-primary, 0.74);
+    font-size: 0.96rem;
+    line-height: 1.7;
   }
 
   &__list {
@@ -58,6 +75,22 @@
     font-weight: 500;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
+    padding-top: 0.55rem;
+  }
+
+  &__body {
+    position: relative;
+    padding-right: 1rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 1px;
+      background: rgba($color-primary, 0.12);
+    }
   }
 
   &__name {
@@ -86,5 +119,12 @@
     color: rgba($color-primary, 0.72);
     font-size: 0.92rem;
     line-height: 1.65;
+    max-width: 42rem;
+  }
+
+  @media (max-width: 767px) {
+    &__body::after {
+      display: none;
+    }
   }
 }

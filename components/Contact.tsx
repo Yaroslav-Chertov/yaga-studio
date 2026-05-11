@@ -1,7 +1,9 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import Link from "next/link";
 import { useInView } from "framer-motion";
+import { siteConfig } from "@/data/site";
 
 const SERVICES = [
   "Дизайн сайта",
@@ -197,15 +199,15 @@ export default function Contact() {
             </p>
             <div className="contact__actions">
               <a
-                href="mailto:hello@yaga.studio"
+                href={`mailto:${siteConfig.email}`}
                 data-hover
                 className="contact__btn-primary"
               >
-                hello@yaga.studio
+                {siteConfig.email}
                 <ArrowIcon />
               </a>
               <a
-                href="https://t.me/yagastudio"
+                href={siteConfig.telegram}
                 data-hover
                 className="contact__btn-secondary"
               >
@@ -405,7 +407,13 @@ export default function Contact() {
               />
               <span>
                 Нажимая на кнопку, вы даёте согласие на обработку персональных
-                данных и соглашаетесь с политикой конфиденциальности.
+                данных, соглашаетесь с{" "}
+                <Link href="/privacy-policy">политикой конфиденциальности</Link>{" "}
+                и{" "}
+                <Link href="/consent-to-data-processing">
+                  согласием на обработку данных
+                </Link>
+                .
               </span>
             </label>
             {errors.consent && (

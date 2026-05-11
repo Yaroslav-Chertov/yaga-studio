@@ -116,7 +116,7 @@
 
     @include lg {
       grid-template-columns: minmax(0, 1.45fr) minmax(22rem, 0.9fr);
-      align-items: start;
+      align-items: end;
       gap: 1.35rem;
     }
 
@@ -148,8 +148,17 @@
     }
   }
 
+  &__aside {
+    display: grid;
+    gap: 1rem;
+    align-self: end;
+    max-width: 30rem;
+    padding: 1rem 0 0 1.25rem;
+    border-left: 1px solid rgba($color-primary, 0.14);
+  }
+
   &__description {
-    max-width: none;
+    max-width: 30rem;
     font-size: clamp(0.96rem, 0.96vw, 1.04rem);
     line-height: 1.58;
     color: rgba($color-primary, 0.93);
@@ -254,6 +263,10 @@
     &__top {
       gap: 1rem;
     }
+
+    &__aside {
+      padding-left: 1rem;
+    }
   }
 
   @media (max-width: 767px) {
@@ -275,6 +288,12 @@
       max-width: 10.5ch;
       font-size: clamp(2.7rem, 13.2vw, 4.6rem);
       line-height: 0.92;
+    }
+
+    &__aside {
+      border-left: none;
+      border-top: 1px solid rgba($color-primary, 0.14);
+      padding: 1rem 0 0;
     }
 
     &__description {

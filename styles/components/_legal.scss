@@ -1,0 +1,157 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.legal-page {
+  min-height: 100vh;
+
+  &__hero,
+  &__content {
+    @include section-base;
+  }
+
+  &__hero {
+    padding-top: clamp(7rem, 12vw, 10rem);
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: fit-content;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba($color-primary, 0.16);
+    border-radius: $radius-pill;
+    background: rgba($color-primary, 0.05);
+    color: rgba($color-primary, 0.82);
+  }
+
+  &__topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    justify-content: space-between;
+  }
+
+  &__label,
+  &__updated {
+    @include label;
+    color: rgba($color-primary, 0.72);
+  }
+
+  &__title {
+    @include section-heading;
+    max-width: 12ch;
+  }
+
+  &__lead {
+    max-width: 44rem;
+    color: rgba($color-primary, 0.8);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  &__content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__section {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.35rem 0;
+    border-top: 1px solid rgba($color-primary, 0.14);
+
+    @include lg {
+      grid-template-columns: 18rem minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    h2 {
+      font-family: $font-display;
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+  }
+
+  &__section-body {
+    display: grid;
+    gap: 0.9rem;
+
+    p {
+      max-width: 48rem;
+      color: rgba($color-primary, 0.76);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+  }
+}
+
+.error-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem $section-padding-x 4rem;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  text-align: center;
+  overflow: hidden;
+
+  &__orb {
+    @include radial-glow(520px, 0.22);
+    top: 32%;
+    left: 50%;
+
+    &--warm {
+      filter: hue-rotate(-18deg);
+    }
+  }
+
+  &__code {
+    font-family: $font-display;
+    font-size: clamp(5rem, 18vw, 12rem);
+    line-height: 0.88;
+    letter-spacing: -0.08em;
+    color: rgba($color-primary, 0.18);
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(2rem, 5vw, 4.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  &__text {
+    max-width: 38rem;
+    margin: 0 auto;
+    color: rgba($color-primary, 0.78);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  &__btn {
+    @include btn-outline;
+
+    &--primary {
+      @include btn-primary;
+      border: 0;
+    }
+
+    &--ghost {
+      background: rgba($color-primary, 0.04);
+    }
+  }
+}

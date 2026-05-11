@@ -1,16 +1,16 @@
 "use client";
 
 const heroTags = [
-  "Бренд",
-  "Исследования",
-  "Продуктовый UX",
+  "Брендинг",
+  "UX-исследования",
   "Интерфейсы",
-  "Разработка",
-  "AI-инструменты",
+  "Веб-разработка",
+  "AI workflow",
 ] as const;
 
 const heroFacts = [
   { value: "5+", label: "лет практики с цифровыми продуктами" },
+  { value: "1", label: "команда для стратегии, дизайна и запуска" },
   { value: "∞", label: "внимание к качеству и деталям" },
 ] as const;
 
@@ -32,6 +32,8 @@ export default function Hero() {
       <div className="hero__glow" aria-hidden />
       <div className="hero__orb hero__orb--one" aria-hidden />
       <div className="hero__orb hero__orb--two" aria-hidden />
+      <div className="hero__gridline hero__gridline--v" aria-hidden />
+      <div className="hero__gridline hero__gridline--h" aria-hidden />
 
       <div className="hero__eyebrow">
         <span className="hero__eyebrow-line" />
@@ -47,6 +49,21 @@ export default function Hero() {
             которые выглядят современно и&nbsp;убедительно
           </em>
         </h1>
+
+        <div className="hero__aside">
+          <p className="hero__description">
+            Подключаемся к проектам, где важно не просто сделать красивый
+            digital-слой, а выстроить цельный образ бренда и довести его до
+            рабочего результата.
+          </p>
+          <div className="hero__tags" aria-label="Направления работы">
+            {heroTags.map((tag) => (
+              <span key={tag} className="hero__tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="hero__bottom">

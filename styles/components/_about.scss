@@ -5,6 +5,15 @@
   @include section-base;
   overflow: clip;
 
+  &::after {
+    content: "Cases";
+    position: absolute;
+    top: 2.2rem;
+    right: clamp(1rem, 4vw, 3rem);
+    @include ghost-text(clamp(3rem, 8vw, 7rem));
+    opacity: 0.26;
+  }
+
   &__label {
     @include label;
     display: block;
@@ -21,6 +30,19 @@
       align-items: end;
       gap: 2rem;
     }
+  }
+
+  &__title-wrap {
+    position: relative;
+    width: fit-content;
+  }
+
+  &__ghost {
+    position: absolute;
+    left: -0.4rem;
+    top: -1rem;
+    @include ghost-text(clamp(3rem, 8vw, 6rem));
+    opacity: 0.24;
   }
 
   &__heading {
@@ -144,7 +166,7 @@
       position: absolute;
       top: 50%;
       right: clamp(1rem, 4vw, 3rem);
-      width: min(24rem, 34vw);
+      width: min(25rem, 36vw);
       transform: translateY(-50%) translateX(18px) rotate(-3deg);
       opacity: 0;
       visibility: hidden;
@@ -164,34 +186,19 @@
   }
 
   &__preview-image {
+    position: relative;
     aspect-ratio: 4 / 3;
     border: 1px solid rgba($color-primary, 0.16);
     border-radius: $radius-lg;
-    background:
-      linear-gradient(135deg, $color-primary, $color-muted),
-      linear-gradient(180deg, $color-surface, $color-bg);
+    background: rgba($color-surface, 0.94);
     box-shadow: 0 24px 60px rgba($color-ink, 0.18);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1.5rem;
+    overflow: hidden;
 
-    span {
-      display: block;
-      font-family: $font-display;
-      font-size: clamp(1.3rem, 2vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      color: $color-ink;
-    }
-
-    small {
-      display: block;
-      margin-top: 0.55rem;
-      color: rgba($color-ink, 0.58);
-      font-size: 0.72rem;
-      letter-spacing: $tracking-widest;
-      text-transform: uppercase;
+    img {
+      object-fit: contain;
+      object-position: center;
+      padding: 0.75rem;
+      background: rgba($color-ink, 0.1);
     }
   }
 
@@ -266,34 +273,28 @@
   }
 
   &__image {
+    position: relative;
+    justify-self: start;
+    max-width: 62rem;
+    width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: $radius-xl;
     border: 1px solid rgba($color-primary, 0.16);
-    background:
-      linear-gradient(135deg, $color-primary, $color-muted),
-      linear-gradient(180deg, $color-surface, $color-bg);
+    background: rgba($color-surface, 0.9);
     box-shadow: 0 24px 60px rgba($color-ink, 0.18);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 2rem;
+    overflow: hidden;
 
-    span {
-      display: block;
-      font-family: $font-display;
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      color: $color-ink;
+    img {
+      object-fit: contain;
+      object-position: center;
+      padding: clamp(0.9rem, 2vw, 1.5rem);
+      background: rgba($color-ink, 0.1);
     }
+  }
 
-    small {
-      display: block;
-      margin-top: 0.75rem;
-      color: rgba($color-ink, 0.58);
-      font-size: 0.72rem;
-      letter-spacing: $tracking-widest;
-      text-transform: uppercase;
+  @media (max-width: 1023px) {
+    &__image {
+      max-width: 100%;
     }
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Contact from "@/components/Contact";
@@ -6,6 +7,7 @@ import Cursor from "@/components/Cursor";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import { cases } from "@/data/cases";
+import { siteConfig, siteUrl } from "@/data/site";
 
 type CasePageProps = {
   params: Promise<{
@@ -34,12 +36,28 @@ export async function generateMetadata({
   return {
     title: `${item.client} — кейс YAGA`,
     description: item.intro,
+    alternates: {
+      canonical: `/cases/${item.slug}`,
+    },
     openGraph: {
       title: `${item.client} — кейс YAGA`,
       description: item.intro,
-      siteName: "YAGA Studio",
+      url: `${siteUrl}/cases/${item.slug}`,
+      siteName: siteConfig.name,
       locale: "ru_RU",
       type: "article",
+      images: [
+        {
+          url: item.previewImage,
+          alt: item.previewAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${item.client} — кейс YAGA`,
+      description: item.intro,
+      images: [item.previewImage],
     },
   };
 }
@@ -73,9 +91,13 @@ export default async function CasePage({ params }: CasePageProps) {
           <h1 className="case-hero__title">{item.title}</h1>
           <p className="case-hero__intro">{item.intro}</p>
 
-          <div className="case-hero__image" aria-hidden="true">
-            <span>{item.heroImageLabel}</span>
-            <small>NDA IMAGE</small>
+          <div className="case-hero__image">
+            <Image
+              src={item.previewImage}
+              alt={item.previewAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 980px"
+            />
           </div>
         </section>
 

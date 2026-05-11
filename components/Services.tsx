@@ -93,6 +93,10 @@ export default function Services() {
             делаем
           </h2>
         </div>
+        <p className="services__intro">
+          Подключаемся к проектам, где важно собрать сильный визуальный образ,
+          удобный пользовательский опыт и качественную реализацию.
+        </p>
       </div>
 
       <div className="services__list">

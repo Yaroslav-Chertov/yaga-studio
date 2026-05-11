@@ -71,6 +71,11 @@ export default function Process() {
         работает
       </h2>
 
+      <p className="process__intro">
+        Работаем поэтапно, чтобы ключевые решения по структуре, подаче и
+        реализации принимались вовремя и не терялись на пути к запуску.
+      </p>
+
       <div className="process__list">
         {steps.map((step, i) => (
           <StepRow key={step.timing} step={step} index={i} />

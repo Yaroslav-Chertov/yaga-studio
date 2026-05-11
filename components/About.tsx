@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
@@ -43,8 +44,12 @@ function CaseRow({ item, index }: CaseRowProps) {
         aria-hidden="true"
       >
         <div className="case-row__preview-image">
-          <span>{item.ndaLabel}</span>
-          <small>NDA</small>
+          <Image
+            src={item.previewImage}
+            alt={item.previewAlt}
+            fill
+            sizes="(max-width: 1024px) 0px, 24rem"
+          />
         </div>
       </div>
     </Link>
@@ -60,18 +65,23 @@ export default function About() {
       <span className="about__label">01 — Кейсы</span>
 
       <div className="about__hero" ref={titleRef}>
-        <h2
-          className="about__heading"
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
-          Наши
-          <br />
-          клиенты
-        </h2>
+        <div className="about__title-wrap">
+          <span className="about__ghost" aria-hidden>
+            01
+          </span>
+          <h2
+            className="about__heading"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateY(0)" : "translateY(24px)",
+              transition: "opacity 0.6s ease, transform 0.6s ease",
+            }}
+          >
+            Избранные
+            <br />
+            кейсы
+          </h2>
+        </div>
 
         <p
           className="about__intro"
@@ -81,8 +91,8 @@ export default function About() {
             transition: "opacity 0.6s ease 0.08s, transform 0.6s ease 0.08s",
           }}
         >
-          Проекты, где мы собирали визуальный язык, интерфейсы и разработку в
-          цельную систему.
+          Реальные проекты в брендинге, интерфейсах и разработке: от запущенных
+          продуктов до систем, которые сейчас находятся в работе.
         </p>
       </div>
 

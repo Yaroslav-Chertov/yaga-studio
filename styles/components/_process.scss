@@ -3,6 +3,16 @@
 
 .process {
   @include section-base;
+  overflow: clip;
+
+  &::after {
+    content: "Flow";
+    position: absolute;
+    top: 2.2rem;
+    right: clamp(1rem, 4vw, 3rem);
+    @include ghost-text(clamp(3rem, 8vw, 7rem));
+    opacity: 0.28;
+  }
 
   &__label {
     @include label;
@@ -13,7 +23,15 @@
   &__heading {
     @include section-heading;
     max-width: 7ch;
+    margin-bottom: 1rem;
+  }
+
+  &__intro {
+    max-width: 34rem;
     margin-bottom: 2.5rem;
+    color: rgba($color-primary, 0.72);
+    font-size: 0.96rem;
+    line-height: 1.72;
   }
 
   &__list {
@@ -36,14 +54,27 @@
   &__timing {
     @include label;
     color: rgba($color-primary, 0.72);
+    padding-top: 0.45rem;
   }
 
   &__name {
+    position: relative;
+    padding-right: 1rem;
     font-family: $font-display;
     font-size: clamp(1.15rem, 2.5vw, 1.8rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.05em;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0.25rem;
+      bottom: 0.25rem;
+      width: 1px;
+      background: rgba($color-primary, 0.12);
+    }
   }
 
   &__desc {
@@ -51,5 +82,11 @@
     color: rgba($color-primary, 0.74);
     font-size: 0.95rem;
     line-height: 1.7;
+  }
+
+  @media (max-width: 767px) {
+    &__name::after {
+      display: none;
+    }
   }
 }
