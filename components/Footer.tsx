@@ -4,7 +4,6 @@ import { siteConfig } from "@/data/site";
 const footerLinks = [
   { href: siteConfig.telegram, label: "Telegram" },
   { href: `mailto:${siteConfig.email}`, label: "Email" },
-  { href: siteConfig.linkedin, label: "LinkedIn" },
 ];
 
 const legalLinks = [

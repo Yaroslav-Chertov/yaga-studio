@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import Link from "next/link";
+import emailjs from "@emailjs/browser";
 import { useInView } from "framer-motion";
 import { siteConfig } from "@/data/site";
 
@@ -33,7 +34,7 @@ type FormValues = {
   consent: boolean;
 };
 
-type FormErrors = Partial<Record<keyof FormValues | "file", string>>;
+type FormErrors = Partial<Record<keyof FormValues | "file" | "submit", string>>;
 
 const initialValues: FormValues = {
   services: [],
@@ -100,6 +101,41 @@ function validate(values: FormValues, file: File | null): FormErrors {
   return errors;
 }
 
+/**
+ * Отправляет уведомление в Telegram через Bot API.
+ * Требует NEXT_PUBLIC_TG_BOT_TOKEN и NEXT_PUBLIC_TG_CHAT_ID.
+ */
+async function sendTelegram(values: FormValues): Promise<void> {
+  const token = process.env.NEXT_PUBLIC_TG_BOT_TOKEN;
+  const chatId = process.env.NEXT_PUBLIC_TG_CHAT_ID;
+
+  if (!token || !chatId) return;
+
+  const lines = [
+    `📬 *Новая заявка с YAGA Studio*`,
+    ``,
+    `*Услуги:* ${values.services.join(", ")}`,
+    `*Бюджет:* ${values.budget}`,
+    values.company ? `*Компания:* ${values.company}` : null,
+    values.name ? `*Имя:* ${values.name}` : null,
+    `*Контакт:* ${values.contact}`,
+    values.referral ? `*Откуда узнали:* ${values.referral}` : null,
+    values.message ? `\n*Задача:*\n${values.message.slice(0, 800)}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: lines,
+      parse_mode: "Markdown",
+    }),
+  });
+}
+
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -154,12 +190,43 @@ export default function Contact() {
     if (Object.keys(nextErrors).length) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    setSubmitted(true);
-    setIsSubmitting(false);
-    setValues(initialValues);
-    setFile(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
+
+    try {
+      // EmailJS — отправка на почту
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: values.name || "Не указано",
+          company: values.company || "Не указано",
+          services: values.services.join(", "),
+          budget: values.budget,
+          message: values.message || "—",
+          contact: values.contact,
+          referral: values.referral || "Не указано",
+          file_name: file ? file.name : "Без файла",
+        },
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        },
+      );
+
+      // Telegram Bot — уведомление в чат (опционально)
+      await sendTelegram(values);
+
+      setSubmitted(true);
+      setValues(initialValues);
+      setFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } catch {
+      setErrors((current) => ({
+        ...current,
+        submit:
+          "Не удалось отправить заявку. Напишите нам напрямую в Telegram или на почту.",
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -419,6 +486,13 @@ export default function Contact() {
             {errors.consent && (
               <p className="contact__error contact__error--consent">
                 {errors.consent}
+              </p>
+            )}
+
+            {/* Submit-level error */}
+            {errors.submit && (
+              <p className="contact__error contact__error--submit">
+                {errors.submit}
               </p>
             )}
 
