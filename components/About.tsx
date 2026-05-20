@@ -62,7 +62,7 @@ export default function About() {
 
   return (
     <section id="cases" className="about">
-      <span className="about__label">01 — Кейсы</span>
+      <span className="about__label">01 — Портфолио</span>
 
       <div className="about__hero" ref={titleRef}>
         <div className="about__title-wrap">
@@ -77,9 +77,7 @@ export default function About() {
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
-            Избранные
-            <br />
-            кейсы
+            Наши кейсы
           </h2>
         </div>
 

@@ -4,6 +4,19 @@
 .services {
   @include section-base;
   overflow: clip;
+  // Deep dark surface — maximum contrast island against the warm bg
+  background:
+    radial-gradient(
+      ellipse 90% 60% at 50% 0%,
+      rgba($color-wine, 0.12),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      $color-surface-deep 0%,
+      rgba($color-ink, 0.88) 100%
+    );
+  border-top-color: rgba($color-primary, 0.1);
 
   &::after {
     content: "Services";
@@ -11,13 +24,32 @@
     top: 2.4rem;
     right: clamp(1rem, 4vw, 3rem);
     @include ghost-text(clamp(3rem, 9vw, 8rem));
-    opacity: 0.28;
+    opacity: 0.18;
+  }
+
+  // Top highlight edge
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: $section-padding-x;
+    right: $section-padding-x;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-ember, 0.5) 30%,
+      rgba($color-primary, 0.3) 60%,
+      transparent
+    );
+    pointer-events: none;
   }
 
   &__label {
     @include label;
     display: block;
     margin-bottom: 2.5rem;
+    color: rgba($color-primary, 0.6);
   }
 
   &__header {
@@ -38,13 +70,13 @@
 
   &__intro {
     max-width: 23rem;
-    color: rgba($color-primary, 0.74);
+    color: rgba($color-primary, 0.68);
     font-size: 0.96rem;
     line-height: 1.7;
   }
 
   &__list {
-    border-top: 1px solid rgba($color-primary, 0.16);
+    border-top: 1px solid rgba($color-primary, 0.1);
   }
 }
 
@@ -53,7 +85,7 @@
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1.6rem 0;
-  border-bottom: 1px solid rgba($color-primary, 0.16);
+  border-bottom: 1px solid rgba($color-primary, 0.1);
   transition:
     transform $transition-fast,
     background-color $transition-fast;
@@ -65,12 +97,12 @@
   }
 
   &:hover {
-    background-color: rgba($color-primary, 0.05);
+    background-color: rgba($color-primary, 0.04);
     transform: translateX(6px);
   }
 
   &__num {
-    color: rgba($color-primary, 0.58);
+    color: rgba($color-primary, 0.35);
     font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: $tracking-widest;
@@ -89,7 +121,7 @@
       top: 0.35rem;
       bottom: 0.35rem;
       width: 1px;
-      background: rgba($color-primary, 0.12);
+      background: rgba($color-primary, 0.08);
     }
   }
 
@@ -107,8 +139,9 @@
     margin-top: 0.85rem;
     padding: 0.35rem 0.65rem;
     border-radius: $radius-pill;
-    background-color: $color-primary;
-    color: $color-ink;
+    background-color: rgba($color-ember, 0.18);
+    border: 1px solid rgba($color-ember, 0.28);
+    color: rgba($color-ember, 0.95);
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: $tracking-widest;
@@ -116,7 +149,7 @@
   }
 
   &__desc {
-    color: rgba($color-primary, 0.72);
+    color: rgba($color-primary, 0.62);
     font-size: 0.92rem;
     line-height: 1.65;
     max-width: 42rem;

@@ -9,6 +9,11 @@ $color-wine: #a22c5f;
 $color-ink: #251a2c;
 $color-shadow: #3f3048;
 
+// Section surface variants
+$color-surface-alt: color-mix(in srgb, $color-ink 62%, $color-bg 38%);
+$color-surface-deep: color-mix(in srgb, $color-ink 82%, $color-surface 18%);
+$color-surface-warm: color-mix(in srgb, $color-bg 94%, $color-wine 6%);
+
 $font-display: "Manrope", sans-serif;
 $font-body: "Onest", sans-serif;
 

@@ -12,11 +12,16 @@
 
 .marquee {
   overflow: hidden;
-  border-top: 1px solid rgba($color-primary, 0.16);
-  border-bottom: 1px solid rgba($color-primary, 0.16);
-  background-color: rgba($color-primary, 0.08);
-  backdrop-filter: blur(8px);
-  padding: 1rem 0;
+  border-top: 1px solid rgba($color-primary, 0.14);
+  border-bottom: 1px solid rgba($color-primary, 0.14);
+  // Ember-tinted band — acts as a visual separator with personality
+  background: linear-gradient(
+    90deg,
+    rgba($color-ember, 0.06),
+    rgba($color-wine, 0.08) 40%,
+    rgba($color-ember, 0.06) 100%
+  );
+  padding: 0.85rem 0;
 
   &__track {
     display: flex;
@@ -34,7 +39,7 @@
     font-weight: 500;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
-    color: rgba($color-primary, 0.88);
+    color: rgba($color-primary, 0.82);
     white-space: nowrap;
   }
 
@@ -43,6 +48,7 @@
     height: 0.35rem;
     border-radius: 50%;
     background-color: $color-ember;
+    box-shadow: 0 0 6px rgba($color-ember, 0.6);
     flex-shrink: 0;
   }
 }

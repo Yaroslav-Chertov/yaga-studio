@@ -4,6 +4,36 @@
 .why {
   @include section-base;
   overflow: clip;
+  // Rich dark-wine tint — distinct from services (which was ink-dominant)
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 100% 50%,
+      rgba($color-wine, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 80% at 0% 100%,
+      rgba($color-shadow, 0.5),
+      transparent 60%
+    ),
+    linear-gradient(
+      160deg,
+      rgba($color-ink, 0.7) 0%,
+      rgba($color-surface, 0.4) 100%
+    );
+  border-top-color: rgba($color-primary, 0.08);
+
+  // Top gradient fade from previous section
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, rgba($color-bg, 0.35), transparent);
+    pointer-events: none;
+  }
 
   &::after {
     content: "YAGA";
@@ -11,13 +41,14 @@
     top: 2.2rem;
     right: clamp(1rem, 4vw, 3rem);
     @include ghost-text(clamp(3rem, 9vw, 8rem));
-    opacity: 0.24;
+    opacity: 0.18;
   }
 
   &__label {
     @include label;
     display: block;
     margin-bottom: 2.5rem;
+    color: rgba($color-primary, 0.6);
   }
 
   &__header {
@@ -37,14 +68,18 @@
   }
 
   &__subtitle {
-    color: rgba($color-primary, 0.72);
+    color: rgba($color-primary, 0.68);
     font-size: 0.95rem;
     line-height: 1.7;
   }
 
   &__grid {
     display: grid;
-    gap: 1rem;
+    gap: 1px; // tight gap, let borders do the work
+    background: rgba($color-primary, 0.08); // grid line color
+    border: 1px solid rgba($color-primary, 0.08);
+    border-radius: $radius-lg;
+    overflow: hidden;
 
     @include md {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -56,17 +91,17 @@
   }
 
   &__banner {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     padding: 1.75rem 2rem;
-    border: 1px solid rgba($color-primary, 0.16);
+    border: 1px solid rgba($color-primary, 0.12);
     border-radius: $radius-md;
     background:
       linear-gradient(
         135deg,
-        rgba($color-primary, 0.08),
-        rgba($color-wine, 0.16)
+        rgba($color-primary, 0.06),
+        rgba($color-wine, 0.2)
       ),
-      rgba($color-primary, 0.04);
+      rgba($color-primary, 0.03);
   }
 
   &__banner-text {
@@ -79,7 +114,7 @@
   }
 
   &__banner-accent {
-    color: rgba($color-primary, 0.7);
+    color: rgba($color-primary, 0.6);
   }
 }
 
@@ -88,24 +123,17 @@
   flex-direction: column;
   gap: 0.9rem;
   min-height: 100%;
-  padding: 1.5rem;
-  border: 1px solid rgba($color-primary, 0.16);
-  border-radius: $radius-md;
-  background: rgba($color-primary, 0.05);
-  box-shadow: 0 20px 38px rgba($color-ink, 0.06);
+  padding: 1.75rem 1.5rem;
+  background: rgba($color-ink, 0.45);
   transition:
-    transform $transition-fast,
-    border-color $transition-fast,
     background-color $transition-fast;
 
   &:hover {
-    transform: translateY(-4px);
-    border-color: rgba($color-primary, 0.28);
-    background: rgba($color-primary, 0.08);
+    background: rgba($color-ink, 0.3);
   }
 
   &__num {
-    color: rgba($color-primary, 0.28);
+    color: rgba($color-ember, 0.4);
     font-family: $font-display;
     font-size: 2.7rem;
     font-weight: 800;
@@ -122,7 +150,7 @@
   }
 
   &__text {
-    color: rgba($color-primary, 0.74);
+    color: rgba($color-primary, 0.66);
     font-size: 0.95rem;
     line-height: 1.7;
   }

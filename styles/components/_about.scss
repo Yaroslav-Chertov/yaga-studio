@@ -4,6 +4,32 @@
 .about {
   @include section-base;
   overflow: clip;
+  // Warm lifted surface — slight brightness above the base bg
+  background:
+    linear-gradient(
+      180deg,
+      rgba($color-primary, 0.055) 0%,
+      rgba($color-primary, 0.02) 60%,
+      transparent 100%
+    );
+
+  // Left runway accent line — editorial marker
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba($color-ember, 0.7) 20%,
+      rgba($color-wine, 0.5) 80%,
+      transparent
+    );
+    pointer-events: none;
+  }
 
   &::after {
     content: "Cases";

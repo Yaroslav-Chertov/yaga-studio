@@ -6,6 +6,25 @@
   padding: $section-padding-y $section-padding-x 6rem;
   overflow: hidden;
 
+  // Wine-to-ember line separating from dark Why section
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba($color-wine, 0.55) 30%,
+      rgba($color-ember, 0.35) 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+
   &__glow {
     @include radial-glow(660px, 0.18);
     top: 24%;
