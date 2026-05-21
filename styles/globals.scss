@@ -14,24 +14,3 @@
 @use "components/cursor";
 @use "components/legal";
 @use "components/transitions";
-
-// ── Section rhythm utilities ──────────────────────────────────────────────
-// Shared accent for section number labels (About, Services, Process, Why)
-.about__label,
-.services__label,
-.process__label,
-.why__label {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 1.5rem;
-    height: 1px;
-    background: rgba($color-ember, 0.7);
-    flex-shrink: 0;
-  }
-}

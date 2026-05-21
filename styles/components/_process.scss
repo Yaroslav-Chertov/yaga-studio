@@ -4,44 +4,86 @@
 .process {
   @include section-base;
   overflow: clip;
-  background:
-    linear-gradient(
-      180deg,
-      rgba($color-primary, 0.03) 0%,
-      transparent 50%
-    );
 
-  &::after {
-    content: "Flow";
+  &::before {
+    content: "";
     position: absolute;
-    top: 2.2rem;
-    right: clamp(1rem, 4vw, 3rem);
-    @include ghost-text(clamp(3rem, 8vw, 7rem));
-    opacity: 0.28;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-ember, 0.45) 25%,
+      rgba($color-primary, 0.18) 60%,
+      transparent
+    );
   }
 
   &__label {
-    @include label;
-    display: block;
-    margin-bottom: 2.5rem;
+    @include label(0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 1.25rem;
+      height: 1px;
+      background: rgba($color-ember, 0.7);
+    }
+  }
+
+  &__header {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+
+    @include lg {
+      grid-template-columns: minmax(0, 1fr) 22rem;
+      align-items: end;
+    }
   }
 
   &__heading {
     @include section-heading;
     max-width: 7ch;
-    margin-bottom: 1rem;
   }
 
   &__intro {
-    max-width: 34rem;
-    margin-bottom: 2.5rem;
-    color: rgba($color-primary, 0.72);
-    font-size: 0.96rem;
-    line-height: 1.72;
+    max-width: 22rem;
+    color: rgba($color-primary, 0.7);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    align-self: end;
   }
 
   &__list {
-    border-top: 1px solid rgba($color-primary, 0.16);
+    position: relative;
+    display: grid;
+    gap: 0;
+
+    @include md {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        bottom: 2rem;
+        left: 3.5rem;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba($color-primary, 0.14) 10%,
+          rgba($color-primary, 0.14) 90%,
+          transparent
+        );
+        pointer-events: none;
+      }
+    }
   }
 }
 
@@ -49,51 +91,59 @@
   display: grid;
   gap: 0.9rem;
   padding: 1.6rem 0;
-  border-bottom: 1px solid rgba($color-primary, 0.16);
   position: relative;
 
   @include md {
-    grid-template-columns: 10rem 16rem 1fr;
+    grid-template-columns: 8rem 18rem 1fr;
     gap: 1.5rem;
     align-items: start;
+    padding: 2rem 0;
   }
 
   &__timing {
-    @include label;
-    color: rgba($color-primary, 0.72);
-    padding-top: 0.45rem;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding-top: 0.1rem;
+
+    @include md {
+      &::after {
+        content: "";
+        position: absolute;
+        left: calc(3.5rem - 4px);
+        top: 0.45rem;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: $color-bg;
+        border: 1px solid rgba($color-primary, 0.3);
+        box-shadow: 0 0 0 3px rgba($color-primary, 0.06);
+      }
+    }
+  }
+
+  &__timing-label {
+    @include label(0.6);
   }
 
   &__name {
-    position: relative;
-    padding-right: 1rem;
     font-family: $font-display;
-    font-size: clamp(1.15rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.6vw, 1.9rem);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.03;
     letter-spacing: -0.05em;
-
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0.25rem;
-      bottom: 0.25rem;
-      width: 1px;
-      background: rgba($color-primary, 0.12);
-    }
   }
 
   &__desc {
-    max-width: 40rem;
-    color: rgba($color-primary, 0.74);
-    font-size: 0.95rem;
+    max-width: 38rem;
+    color: rgba($color-primary, 0.7);
+    font-size: 0.92rem;
     line-height: 1.7;
+    padding-top: 0.15rem;
   }
 
-  @media (max-width: 767px) {
-    &__name::after {
-      display: none;
-    }
+  & + & {
+    border-top: 1px solid rgba($color-primary, 0.08);
   }
 }

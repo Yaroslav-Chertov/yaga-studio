@@ -4,154 +4,138 @@
 .why {
   @include section-base;
   overflow: clip;
-  // Rich dark-wine tint — distinct from services (which was ink-dominant)
-  background:
-    radial-gradient(
-      ellipse 70% 50% at 100% 50%,
-      rgba($color-wine, 0.18),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 50% 80% at 0% 100%,
-      rgba($color-shadow, 0.5),
-      transparent 60%
-    ),
-    linear-gradient(
-      160deg,
-      rgba($color-ink, 0.7) 0%,
-      rgba($color-surface, 0.4) 100%
-    );
-  border-top-color: rgba($color-primary, 0.08);
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, $color-ink 78%, $color-wine 22%) 0%,
+    color-mix(in srgb, $color-ink 90%, $color-shadow 10%) 100%
+  );
+  border-top-color: transparent;
 
-  // Top gradient fade from previous section
   &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 120px;
-    background: linear-gradient(180deg, rgba($color-bg, 0.35), transparent);
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "YAGA";
-    position: absolute;
-    top: 2.2rem;
-    right: clamp(1rem, 4vw, 3rem);
-    @include ghost-text(clamp(3rem, 9vw, 8rem));
-    opacity: 0.18;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-wine, 0.5) 35%,
+      rgba($color-ember, 0.3) 65%,
+      transparent
+    );
   }
 
   &__label {
-    @include label;
-    display: block;
-    margin-bottom: 2.5rem;
-    color: rgba($color-primary, 0.6);
+    @include label(0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 1.25rem;
+      height: 1px;
+      background: rgba($color-wine, 0.8);
+    }
   }
 
   &__header {
     display: grid;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
 
     @include lg {
-      grid-template-columns: minmax(0, 1fr) 21rem;
+      grid-template-columns: minmax(0, 1fr) 20rem;
       align-items: end;
     }
   }
 
   &__heading {
     @include section-heading;
-    max-width: 9ch;
+    max-width: 8ch;
   }
 
   &__subtitle {
-    color: rgba($color-primary, 0.68);
-    font-size: 0.95rem;
+    max-width: 20rem;
+    color: rgba($color-primary, 0.62);
+    font-size: 0.92rem;
     line-height: 1.7;
+    align-self: end;
   }
 
-  &__grid {
-    display: grid;
-    gap: 1px; // tight gap, let borders do the work
-    background: rgba($color-primary, 0.08); // grid line color
-    border: 1px solid rgba($color-primary, 0.08);
-    border-radius: $radius-lg;
-    overflow: hidden;
-
-    @include md {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    @include xl {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  &__list {
+    border-top: 1px solid rgba($color-primary, 0.08);
   }
 
   &__banner {
-    margin-top: 1.25rem;
-    padding: 1.75rem 2rem;
-    border: 1px solid rgba($color-primary, 0.12);
-    border-radius: $radius-md;
-    background:
-      linear-gradient(
-        135deg,
-        rgba($color-primary, 0.06),
-        rgba($color-wine, 0.2)
-      ),
-      rgba($color-primary, 0.03);
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid rgba($color-primary, 0.1);
+    border-radius: $radius-lg;
+    background: rgba($color-wine, 0.12);
   }
 
   &__banner-text {
     max-width: 52rem;
     font-family: $font-display;
-    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-size: clamp(1.4rem, 3.2vw, 2.2rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -0.05em;
   }
 
   &__banner-accent {
-    color: rgba($color-primary, 0.6);
+    color: rgba($color-primary, 0.54);
   }
 }
 
-.why-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  min-height: 100%;
-  padding: 1.75rem 1.5rem;
-  background: rgba($color-ink, 0.45);
-  transition:
-    background-color $transition-fast;
+.why-row {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba($color-primary, 0.08);
+  position: relative;
+  transition: background-color $transition-fast;
 
-  &:hover {
-    background: rgba($color-ink, 0.3);
+  @include md {
+    grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.75rem 0;
   }
 
+  &:hover { background: rgba($color-primary, 0.025); }
+
+  &:hover &__title { translate: 5px 0; }
+
   &__num {
-    color: rgba($color-ember, 0.4);
     font-family: $font-display;
-    font-size: 2.7rem;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.08em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba($color-primary, 0.12);
+    user-select: none;
   }
 
   &__title {
     font-family: $font-display;
-    font-size: 1.25rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.04em;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    transition: translate $transition-fast;
   }
 
   &__text {
-    color: rgba($color-primary, 0.66);
-    font-size: 0.95rem;
+    color: rgba($color-primary, 0.6);
+    font-size: 0.9rem;
     line-height: 1.7;
+    padding-top: 0.15rem;
   }
 }

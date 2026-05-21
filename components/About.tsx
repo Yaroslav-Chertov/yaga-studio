@@ -80,18 +80,6 @@ export default function About() {
             Наши кейсы
           </h2>
         </div>
-
-        <p
-          className="about__intro"
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.08s, transform 0.6s ease 0.08s",
-          }}
-        >
-          Реальные проекты в брендинге, интерфейсах и разработке: от запущенных
-          продуктов до систем, которые сейчас находятся в работе.
-        </p>
       </div>
 
       <div className="about__table-head">

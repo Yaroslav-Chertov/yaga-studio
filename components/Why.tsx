@@ -7,7 +7,7 @@ const reasons = [
   {
     num: "01",
     title: "Сильная визуальная подача",
-    text: "Не идём по шаблонному пути и не собираем решения “как у всех”. Для нас важно, чтобы у проекта был собственный характер, а у бренда — выразительный и узнаваемый образ.",
+    text: "Не идём по шаблонному пути и не собираем решения «как у всех». Для нас важно, чтобы у проекта был собственный характер, а у бренда — выразительный и узнаваемый образ.",
   },
   {
     num: "02",
@@ -27,31 +27,29 @@ const reasons = [
   {
     num: "05",
     title: "Технологичный подход",
-    text: "Используем современные инструменты, включая AI, там, где они действительно помогают ускорить процесс.",
+    text: "Используем современные инструменты, включая AI, там, где они действительно помогают ускорить процесс и повысить качество результата.",
   },
 ];
 
 type Reason = (typeof reasons)[0];
 
-function Card({ r, delay }: { r: Reason; delay: number }) {
+function ReasonRow({ r, delay }: { r: Reason; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <div
       ref={ref}
-      className="why-card"
+      className="why-row"
       style={{
         opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(24px)",
+        transform: inView ? "none" : "translateY(20px)",
         transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
       }}
     >
-      <span className="why-card__num" aria-hidden>
-        {r.num}
-      </span>
-      <h3 className="why-card__title">{r.title}</h3>
-      <p className="why-card__text">{r.text}</p>
+      <span className="why-row__num" aria-hidden>{r.num}</span>
+      <h3 className="why-row__title">{r.title}</h3>
+      <p className="why-row__text">{r.text}</p>
     </div>
   );
 }
@@ -83,9 +81,9 @@ export default function Why() {
         </p>
       </div>
 
-      <div className="why__grid">
+      <div className="why__list">
         {reasons.map((r, i) => (
-          <Card key={r.num} r={r} delay={i * 0.08} />
+          <ReasonRow key={r.num} r={r} delay={i * 0.07} />
         ))}
       </div>
 

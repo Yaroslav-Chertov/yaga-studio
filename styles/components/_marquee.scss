@@ -1,54 +1,42 @@
 @use "../variables" as *;
 
 @keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .marquee {
   overflow: hidden;
-  border-top: 1px solid rgba($color-primary, 0.14);
-  border-bottom: 1px solid rgba($color-primary, 0.14);
-  // Ember-tinted band — acts as a visual separator with personality
-  background: linear-gradient(
-    90deg,
-    rgba($color-ember, 0.06),
-    rgba($color-wine, 0.08) 40%,
-    rgba($color-ember, 0.06) 100%
-  );
-  padding: 0.85rem 0;
+  border-top: 1px solid rgba($color-primary, 0.1);
+  border-bottom: 1px solid rgba($color-primary, 0.1);
+  background: rgba($color-ink, 0.25);
+  padding: 0.7rem 0;
 
   &__track {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 30s linear infinite;
+    animation: marquee-scroll 28s linear infinite;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 0 1.75rem;
+    gap: 1.25rem;
+    padding: 0 1.5rem;
     font-family: $font-body;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: $tracking-widest;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba($color-primary, 0.82);
+    color: rgba($color-primary, 0.55);
     white-space: nowrap;
   }
 
   &__dot {
-    width: 0.35rem;
-    height: 0.35rem;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     background-color: $color-ember;
-    box-shadow: 0 0 6px rgba($color-ember, 0.6);
     flex-shrink: 0;
   }
 }

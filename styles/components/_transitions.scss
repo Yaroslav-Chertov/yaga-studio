@@ -1,23 +1,2 @@
 @use "../variables" as *;
-
-// Ember accent line bridging dark sections back to mid-tone
-// Applied to .process which follows the dark .services island
-.process {
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba($color-ember, 0.5) 25%,
-      rgba($color-primary, 0.25) 60%,
-      transparent 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
-}
+// Placeholder — transition effects handled inline in each component

@@ -11,40 +11,39 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.1rem $section-padding-x;
+  padding: 1rem $section-padding-x;
   transition:
     background-color $transition-base,
     backdrop-filter $transition-base,
-    border-color $transition-base,
-    box-shadow $transition-base;
+    border-color $transition-base;
 
   &--scrolled {
-    background-color: rgba($color-bg, 0.72);
-    backdrop-filter: blur(22px);
-    border-bottom: 1px solid rgba($color-primary, 0.18);
-    box-shadow: 0 18px 40px rgba($color-ink, 0.08);
+    background-color: rgba($color-bg, 0.78);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba($color-primary, 0.1);
   }
 
   &__brand {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.75rem;
   }
 
   &__logo {
     font-family: $font-display;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.07em;
     color: $color-primary;
   }
 
   &__status {
-    padding: 0.3rem 0.6rem;
-    border: 1px solid rgba($color-primary, 0.2);
+    padding: 0.25rem 0.55rem;
+    border: 1px solid rgba($color-primary, 0.18);
     border-radius: $radius-pill;
-    color: rgba($color-primary, 0.82);
-    font-size: 0.65rem;
+    color: rgba($color-primary, 0.76);
+    font-size: 0.6rem;
     letter-spacing: $tracking-widest;
     text-transform: uppercase;
   }
@@ -52,30 +51,22 @@
   &__list {
     display: none;
     align-items: center;
-    gap: 1.4rem;
+    gap: 1.5rem;
 
-    @include md {
-      display: flex;
-    }
+    @include md { display: flex; }
   }
 
   &__link {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: $tracking-widest;
-    text-transform: uppercase;
-    color: rgba($color-primary, 0.74);
+    @include label(0.68);
     transition: color $transition-fast;
 
-    &:hover {
-      color: $color-primary;
-    }
+    &:hover { color: $color-primary; }
   }
 
   &__cta {
     @include btn-primary;
-    min-height: 2.8rem;
-    padding: 0.8rem 1.25rem;
-    font-size: 0.72rem;
+    min-height: 2.5rem;
+    padding: 0.7rem 1.15rem;
+    font-size: 0.68rem;
   }
 }

@@ -12,7 +12,7 @@ const steps = [
   {
     timing: "Шаг 02",
     name: "UX и прототип",
-    desc: "Собираем логику будущего решения: пользовательские сценарии, архитектуру, ключевые экраны и содержание. Согласовываем основу до визуальной проработки, чтобы избежать лишних переделок.",
+    desc: "Собираем логику будущего решения: пользовательские сценарии, архитектуру, ключевые экраны и содержание. Согласовываем основу до визуальной проработки.",
   },
   {
     timing: "Шаг 03",
@@ -38,11 +38,13 @@ function StepRow({ step, index }: { step: Step; index: number }) {
       className="process-step"
       style={{
         opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(24px)",
-        transition: `opacity 0.55s ease ${index * 0.1}s, transform 0.55s ease ${index * 0.1}s`,
+        transform: inView ? "none" : "translateY(20px)",
+        transition: `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`,
       }}
     >
-      <span className="process-step__timing">{step.timing}</span>
+      <div className="process-step__timing">
+        <span className="process-step__timing-label">{step.timing}</span>
+      </div>
       <h3 className="process-step__name">{step.name}</h3>
       <p className="process-step__desc">{step.desc}</p>
     </div>
@@ -55,26 +57,28 @@ export default function Process() {
 
   return (
     <section id="process" className="process">
-      <span className="process__label">03 — Процесс</span>
-
-      <h2
-        ref={titleRef}
-        className="process__heading"
-        style={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? "none" : "translateY(20px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-        }}
-      >
-        Как это
-        <br />
-        работает
-      </h2>
-
-      <p className="process__intro">
-        Работаем поэтапно, чтобы ключевые решения по структуре, подаче и
-        реализации принимались вовремя и не терялись на пути к запуску.
-      </p>
+      <div className="process__header">
+        <div>
+          <span className="process__label">03 — Процесс</span>
+          <h2
+            ref={titleRef}
+            className="process__heading"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "none" : "translateY(20px)",
+              transition: "opacity 0.6s ease, transform 0.6s ease",
+            }}
+          >
+            Как это
+            <br />
+            работает
+          </h2>
+        </div>
+        <p className="process__intro">
+          Работаем поэтапно, чтобы ключевые решения по структуре, подаче и
+          реализации принимались вовремя и не терялись на пути к запуску.
+        </p>
+      </div>
 
       <div className="process__list">
         {steps.map((step, i) => (
