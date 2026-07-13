@@ -62,7 +62,6 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
 
       <div className="service-row__body">
         <p className="service-row__name">{s.name}</p>
-        {s.badge && <span className="service-row__badge">{s.badge}</span>}
       </div>
 
       <p className="service-row__desc">{s.desc}</p>
@@ -76,8 +75,6 @@ export default function Services() {
 
   return (
     <section id="services" className="services">
-      <span className="services__label">02 — Услуги</span>
-
       <div className="services__header">
         <div ref={ref}>
           <h2

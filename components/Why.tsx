@@ -47,7 +47,9 @@ function ReasonRow({ r, delay }: { r: Reason; delay: number }) {
         transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
       }}
     >
-      <span className="why-row__num" aria-hidden>{r.num}</span>
+      <span className="why-row__num" aria-hidden>
+        {r.num}
+      </span>
       <h3 className="why-row__title">{r.title}</h3>
       <p className="why-row__text">{r.text}</p>
     </div>
@@ -60,8 +62,6 @@ export default function Why() {
 
   return (
     <section id="why" className="why">
-      <span className="why__label">04 — Почему мы</span>
-
       <div ref={titleRef} className="why__header">
         <h2
           className="why__heading"

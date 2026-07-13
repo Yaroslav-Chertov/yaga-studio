@@ -111,23 +111,6 @@
     z-index: 1;
   }
 
-  &__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.4rem;
-
-    &-line {
-      width: 2rem;
-      height: 1px;
-      background: rgba($color-ember, 0.8);
-    }
-
-    &-label {
-      @include label(0.72);
-    }
-  }
-
   &__top {
     display: grid;
     gap: 1rem;
@@ -200,39 +183,6 @@
     margin-top: 1.4rem;
     padding: 1.2rem 0 2.6rem;
     border-top: 1px solid rgba($color-primary, 0.1);
-  }
-
-  &__facts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    width: min(100%, 42rem);
-
-    @include md {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  &__fact {
-    display: grid;
-    gap: 0.2rem;
-    padding-top: 0.35rem;
-    border-top: 1px solid rgba($color-primary, 0.14);
-  }
-
-  &__fact-value {
-    font-family: $font-display;
-    font-size: clamp(1.6rem, 3.5vw, 2.7rem);
-    font-weight: 800;
-    letter-spacing: -0.07em;
-    line-height: 1;
-  }
-
-  &__fact-label {
-    max-width: 14rem;
-    color: rgba($color-primary, 0.72);
-    font-size: 0.78rem;
-    line-height: 1.4;
   }
 
   &__actions {

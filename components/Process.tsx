@@ -42,9 +42,7 @@ function StepRow({ step, index }: { step: Step; index: number }) {
         transition: `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`,
       }}
     >
-      <div className="process-step__timing">
-        <span className="process-step__timing-label">{step.timing}</span>
-      </div>
+      <div className="process-step__timing"></div>
       <h3 className="process-step__name">{step.name}</h3>
       <p className="process-step__desc">{step.desc}</p>
     </div>
@@ -59,7 +57,6 @@ export default function Process() {
     <section id="process" className="process">
       <div className="process__header">
         <div>
-          <span className="process__label">03 — Процесс</span>
           <h2
             ref={titleRef}
             className="process__heading"

@@ -48,7 +48,7 @@ export default function Footer() {
         </ul>
 
         <p className="footer__caption">
-          © 2026 YAGA Studio · Белград — Петербург
+          © 2026 YAGA Studio · Нови-Сад · Петербург
         </p>
       </div>
     </footer>

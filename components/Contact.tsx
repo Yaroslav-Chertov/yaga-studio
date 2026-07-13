@@ -243,7 +243,6 @@ export default function Contact() {
         }}
       >
         <div className="contact__intro">
-          <span className="contact__label">Контакт</span>
           <h2 className="contact__heading">Расскажите о&nbsp;проекте</h2>
           <p className="contact__lead">
             Заполните короткую форму&nbsp;&mdash; мы&nbsp;изучим задачу,

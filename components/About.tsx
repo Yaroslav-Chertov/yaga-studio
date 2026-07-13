@@ -62,13 +62,8 @@ export default function About() {
 
   return (
     <section id="cases" className="about">
-      <span className="about__label">01 — Портфолио</span>
-
       <div className="about__hero" ref={titleRef}>
         <div className="about__title-wrap">
-          <span className="about__ghost" aria-hidden>
-            01
-          </span>
           <h2
             className="about__heading"
             style={{
