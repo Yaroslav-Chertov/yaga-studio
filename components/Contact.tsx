@@ -49,18 +49,6 @@ const initialValues: FormValues = {
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
-const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-    <path
-      d="M3 13L13 3M13 3H5M13 3V11"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <path
@@ -270,7 +258,6 @@ export default function Contact() {
                 className="contact__btn-primary"
               >
                 {siteConfig.email}
-                <ArrowIcon />
               </a>
               <a
                 href={siteConfig.telegram}
@@ -284,7 +271,6 @@ export default function Contact() {
         ) : (
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <div className="contact__grid">
-
               {/* Services */}
               <div
                 className={`contact__field contact__field--full${
@@ -370,7 +356,9 @@ export default function Contact() {
                 }`}
               >
                 <span className="contact__field-label">Прикрепить файл</span>
-                <span className="contact__hint">Максимальный размер — 10 МБ</span>
+                <span className="contact__hint">
+                  Максимальный размер — 10 МБ
+                </span>
                 <div className="contact__upload">
                   <input
                     ref={fileInputRef}
@@ -390,9 +378,7 @@ export default function Contact() {
                     {file ? file.name : "Файл не выбран"}
                   </span>
                 </div>
-                {errors.file && (
-                  <p className="contact__error">{errors.file}</p>
-                )}
+                {errors.file && <p className="contact__error">{errors.file}</p>}
               </div>
 
               {/* Company */}
@@ -451,7 +437,9 @@ export default function Contact() {
                   onChange={handleInputChange}
                   placeholder="@username в Telegram или email"
                   aria-invalid={Boolean(errors.contact)}
-                  aria-describedby={errors.contact ? "contact-error" : undefined}
+                  aria-describedby={
+                    errors.contact ? "contact-error" : undefined
+                  }
                 />
                 {errors.contact && (
                   <p id="contact-error" className="contact__error">
@@ -507,7 +495,6 @@ export default function Contact() {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Отправляем..." : "Отправить заявку"}
-                <ArrowIcon />
               </button>
             </div>
           </form>

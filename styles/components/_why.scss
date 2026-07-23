@@ -4,11 +4,7 @@
 .why {
   @include section-base;
   overflow: clip;
-  background: linear-gradient(
-    150deg,
-    color-mix(in srgb, $color-ink 78%, $color-wine 22%) 0%,
-    color-mix(in srgb, $color-ink 90%, $color-shadow 10%) 100%
-  );
+  background: $color-deep;
   border-top-color: transparent;
 
   &::before {
@@ -73,7 +69,8 @@
   }
 
   &__banner-accent {
-    color: rgba($color-primary, 0.54);
+    color: $color-ember;
+    font-weight: 800;
   }
 }
 

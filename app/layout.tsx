@@ -1,6 +1,23 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../styles/globals.scss";
+import CookieConsent from "@/components/CookieConsent";
 import { seoKeywords, siteConfig, siteUrl } from "@/data/site";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#7a6485",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  alternateName: siteConfig.shortName,
+  url: siteUrl,
+  description: siteConfig.description,
+  sameAs: [siteConfig.telegram].filter((url) => url && url !== "#"),
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -65,7 +82,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

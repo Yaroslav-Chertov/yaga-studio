@@ -49,6 +49,7 @@ function ReasonRow({ r, delay }: { r: Reason; delay: number }) {
     >
       <span className="why-row__num" aria-hidden>
         {r.num}
+        
       </span>
       <h3 className="why-row__title">{r.title}</h3>
       <p className="why-row__text">{r.text}</p>

@@ -89,7 +89,21 @@ export default async function CasePage({ params }: CasePageProps) {
           </div>
 
           <h1 className="case-hero__title">{item.title}</h1>
-          <p className="case-hero__intro">{item.intro}</p>
+
+          <div className="case-hero__intro-row">
+            <p className="case-hero__intro">{item.intro}</p>
+            {item.liveUrl && (
+              <a
+                href={item.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-hover
+                className="case-hero__visit"
+              >
+                Перейти на сайт
+              </a>
+            )}
+          </div>
 
           <div className="case-hero__image">
             <Image

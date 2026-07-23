@@ -10,6 +10,7 @@ export interface CaseItem {
   previewAlt: string;
   title: string;
   intro: string;
+  liveUrl?: string;
   sections: {
     title: string;
     text: string;
@@ -32,6 +33,7 @@ export const cases: CaseItem[] = [
       "Structura Planer — SaaS-лендинг и коммерческая воронка для цифрового продукта",
     intro:
       "Запустили сайт цифрового планера так, чтобы он не просто презентовал продукт, а доводил пользователя от первого касания до оплаты и выдачи доступа.",
+    liveUrl: "https://structuraplaner.ru",
     sections: [
       {
         title: "Контекст",

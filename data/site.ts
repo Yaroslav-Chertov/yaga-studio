@@ -6,7 +6,7 @@ export const siteConfig = {
   tagline:
     "Брендинг, интерфейсы и разработка для проектов, которым важны вкус, характер и сильная цифровая подача.",
   email: "hello@yaga.studio",
-  telegram: "https://t.me/yagastudio",
+  telegram: "https://t.me/yaroslav_chertov",
   linkedin: "#",
   behance: "#",
   location: "Белград — Петербург",
