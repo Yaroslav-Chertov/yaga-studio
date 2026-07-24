@@ -99,7 +99,6 @@ export default function Nav() {
           <Link href="/" className="nav__logo" onClick={closeMenu}>
             YAGA
           </Link>
-          <span className="nav__status">Studio</span>
         </div>
 
         <ul className="nav__list">

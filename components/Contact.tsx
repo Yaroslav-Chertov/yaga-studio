@@ -16,10 +16,9 @@ const SERVICES = [
 ] as const;
 
 const BUDGETS = [
-  "до 500 тыс. ₽",
+  "до 300 тыс. ₽",
   "до 1 млн ₽",
-  "от 1 — до 3 млн ₽",
-  "от 3 млн ₽",
+  "от 1 — до 5 млн ₽",
   "Пока не знаю",
 ] as const;
 
@@ -48,18 +47,6 @@ const initialValues: FormValues = {
 };
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
-
-const CheckIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-    <path
-      d="M4 9.5L7.2 12.5L14 5.5"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const WarningIcon = () => (
   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden>
@@ -281,10 +268,7 @@ export default function Contact() {
         </div>
 
         <form className="contact__form" onSubmit={handleSubmit} noValidate>
-          <fieldset
-            className="contact__fieldset"
-            disabled={isSubmitting}
-          >
+          <fieldset className="contact__fieldset" disabled={isSubmitting}>
             <div className="contact__grid">
               {/* Services */}
               <div
@@ -314,9 +298,7 @@ export default function Contact() {
                     );
                   })}
                 </div>
-                {errors.services && (
-                  <FieldError>{errors.services}</FieldError>
-                )}
+                {errors.services && <FieldError>{errors.services}</FieldError>}
               </div>
 
               {/* Budget */}
@@ -488,31 +470,31 @@ export default function Contact() {
             )}
           </fieldset>
 
-            {/* Submit-level error */}
-            {errors.submit && (
-              <FieldError className="contact__error--submit">
-                {errors.submit}
-              </FieldError>
-            )}
+          {/* Submit-level error */}
+          {errors.submit && (
+            <FieldError className="contact__error--submit">
+              {errors.submit}
+            </FieldError>
+          )}
 
-            <div className="contact__footer">
-              <p className="contact__note">
-                Обычно отвечаем в&nbsp;течение рабочего дня. Если потребуется,
-                уточним детали по&nbsp;задаче.
-              </p>
-              <button
-                type="submit"
-                data-hover
-                className="contact__submit"
-                disabled={isSubmitting}
-                aria-busy={isSubmitting}
-              >
-                {isSubmitting && (
-                  <span className="contact__spinner" aria-hidden />
-                )}
-                {isSubmitting ? "Отправляем..." : "Отправить заявку"}
-              </button>
-            </div>
+          <div className="contact__footer">
+            <p className="contact__note">
+              Обычно отвечаем в&nbsp;течение рабочего дня. Если потребуется,
+              уточним детали по&nbsp;задаче.
+            </p>
+            <button
+              type="submit"
+              data-hover
+              className="contact__submit"
+              disabled={isSubmitting}
+              aria-busy={isSubmitting}
+            >
+              {isSubmitting && (
+                <span className="contact__spinner" aria-hidden />
+              )}
+              {isSubmitting ? "Отправляем..." : "Отправить заявку"}
+            </button>
+          </div>
         </form>
       </div>
 
@@ -538,30 +520,26 @@ export default function Contact() {
             </button>
 
             <div className="contact__success" role="status" aria-live="polite">
-              <div className="contact__success-icon">
-                <CheckIcon />
-              </div>
-              <p className="contact__success-label">Заявка получена</p>
               <h3 id="contact-success-title" className="contact__success-title">
-                Скоро свяжемся и обсудим задачу подробнее
+                Скоро свяжемся и&nbsp;обсудим задачу подробнее
               </h3>
               <p className="contact__success-text">
                 Если удобнее, можете сразу написать нам в Telegram или на почту.
               </p>
               <div className="contact__actions">
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={siteConfig.telegram}
                   data-hover
                   className="contact__btn-primary"
                 >
-                  {siteConfig.email}
+                  Telegram
                 </a>
                 <a
-                  href={siteConfig.telegram}
+                  href={`mailto:${siteConfig.email}`}
                   data-hover
                   className="contact__btn-secondary"
                 >
-                  Telegram ↗
+                  {siteConfig.email}
                 </a>
               </div>
             </div>

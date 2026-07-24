@@ -79,13 +79,18 @@
 
     @media (max-width: #{$bp-md}) {
       display: flex;
-      gap: 0.9rem;
+      gap: 24px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      margin-inline: calc(#{$section-padding-x} * -1);
-      padding-inline: $section-padding-x;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      scroll-padding-left: 24px;
+      padding-left: 24px;
+      padding-right: 24px;
       padding-bottom: 0.35rem;
 
       &::-webkit-scrollbar {
@@ -111,7 +116,6 @@
   );
   backdrop-filter: blur(22px) saturate(1.6);
   -webkit-backdrop-filter: blur(22px) saturate(1.6);
-  box-shadow: 0 20px 45px rgba($color-ink, 0.28);
 
   &__step {
     @include label(0.62);
