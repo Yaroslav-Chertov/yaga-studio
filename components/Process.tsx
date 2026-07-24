@@ -82,6 +82,16 @@ export default function Process() {
           <StepRow key={step.timing} step={step} index={i} />
         ))}
       </div>
+
+      <div className="process__slider">
+        {steps.map((step) => (
+          <div key={step.timing} className="process-card">
+            <span className="process-card__step">{step.timing}</span>
+            <h3 className="process-card__name">{step.name}</h3>
+            <p className="process-card__desc">{step.desc}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

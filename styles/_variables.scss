@@ -1,23 +1,16 @@
 $color-bg: #af719d;
-$color-surface: #69577a;
-$color-border: #58456a;
 $color-primary: #ecf9c4;
-$color-muted: #ddd0d8;
-$color-subtle: #bfadb8;
 $color-ember: #f8b2b2;
 $color-wine: #9b2558;
 $color-ink: #1e1428;
-$color-shadow: #3a2b45;
+$color-danger: #ff5c5c;
 
 $color-deep: #403d88;
-$color-mid: color-mix(in srgb, $color-ink 60%, $color-bg 40%);
 
 $font-display: "Manrope", sans-serif;
 $font-body: "Onest", sans-serif;
 
 $tracking-tightest: -0.06em;
-$tracking-tighter: -0.04em;
-$tracking-tight: -0.02em;
 $tracking-wide: 0.06em;
 $tracking-widest: 0.14em;
 $tracking-label: 0.12em;

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useInView } from "framer-motion";
@@ -60,6 +60,36 @@ const CheckIcon = () => (
     />
   </svg>
 );
+
+const WarningIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden>
+    <circle cx="7" cy="7" r="6.25" stroke="currentColor" strokeWidth="1.3" />
+    <path
+      d="M7 3.8V7.6"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    />
+    <circle cx="7" cy="10.1" r="0.85" fill="currentColor" />
+  </svg>
+);
+
+function FieldError({
+  id,
+  className = "",
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: string;
+}) {
+  return (
+    <p id={id} className={`contact__error ${className}`.trim()}>
+      <WarningIcon />
+      {children}
+    </p>
+  );
+}
 
 function validate(values: FormValues, file: File | null): FormErrors {
   const errors: FormErrors = {};
@@ -135,6 +165,15 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    if (!submitted) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSubmitted(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [submitted]);
+
   const handleServiceToggle = (service: string) => {
     setValues((current) => {
       const exists = current.services.includes(service);
@@ -173,6 +212,8 @@ export default function Contact() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting) return;
+
     const nextErrors = validate(values, file);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) return;
@@ -239,37 +280,11 @@ export default function Contact() {
           </p>
         </div>
 
-        {submitted ? (
-          <div className="contact__success" role="status" aria-live="polite">
-            <div className="contact__success-icon">
-              <CheckIcon />
-            </div>
-            <p className="contact__success-label">Заявка получена</p>
-            <h3 className="contact__success-title">
-              Скоро свяжемся и обсудим задачу подробнее
-            </h3>
-            <p className="contact__success-text">
-              Если удобнее, можете сразу написать нам в Telegram или на почту.
-            </p>
-            <div className="contact__actions">
-              <a
-                href={`mailto:${siteConfig.email}`}
-                data-hover
-                className="contact__btn-primary"
-              >
-                {siteConfig.email}
-              </a>
-              <a
-                href={siteConfig.telegram}
-                data-hover
-                className="contact__btn-secondary"
-              >
-                Telegram ↗
-              </a>
-            </div>
-          </div>
-        ) : (
-          <form className="contact__form" onSubmit={handleSubmit} noValidate>
+        <form className="contact__form" onSubmit={handleSubmit} noValidate>
+          <fieldset
+            className="contact__fieldset"
+            disabled={isSubmitting}
+          >
             <div className="contact__grid">
               {/* Services */}
               <div
@@ -300,7 +315,7 @@ export default function Contact() {
                   })}
                 </div>
                 {errors.services && (
-                  <p className="contact__error">{errors.services}</p>
+                  <FieldError>{errors.services}</FieldError>
                 )}
               </div>
 
@@ -331,9 +346,7 @@ export default function Contact() {
                     </label>
                   ))}
                 </div>
-                {errors.budget && (
-                  <p className="contact__error">{errors.budget}</p>
-                )}
+                {errors.budget && <FieldError>{errors.budget}</FieldError>}
               </div>
 
               {/* Message */}
@@ -378,7 +391,7 @@ export default function Contact() {
                     {file ? file.name : "Файл не выбран"}
                   </span>
                 </div>
-                {errors.file && <p className="contact__error">{errors.file}</p>}
+                {errors.file && <FieldError>{errors.file}</FieldError>}
               </div>
 
               {/* Company */}
@@ -442,9 +455,7 @@ export default function Contact() {
                   }
                 />
                 {errors.contact && (
-                  <p id="contact-error" className="contact__error">
-                    {errors.contact}
-                  </p>
+                  <FieldError id="contact-error">{errors.contact}</FieldError>
                 )}
               </label>
             </div>
@@ -471,16 +482,17 @@ export default function Contact() {
               </span>
             </label>
             {errors.consent && (
-              <p className="contact__error contact__error--consent">
+              <FieldError className="contact__error--consent">
                 {errors.consent}
-              </p>
+              </FieldError>
             )}
+          </fieldset>
 
             {/* Submit-level error */}
             {errors.submit && (
-              <p className="contact__error contact__error--submit">
+              <FieldError className="contact__error--submit">
                 {errors.submit}
-              </p>
+              </FieldError>
             )}
 
             <div className="contact__footer">
@@ -493,13 +505,69 @@ export default function Contact() {
                 data-hover
                 className="contact__submit"
                 disabled={isSubmitting}
+                aria-busy={isSubmitting}
               >
+                {isSubmitting && (
+                  <span className="contact__spinner" aria-hidden />
+                )}
                 {isSubmitting ? "Отправляем..." : "Отправить заявку"}
               </button>
             </div>
-          </form>
-        )}
+        </form>
       </div>
+
+      {submitted && (
+        <div
+          className="contact__modal-backdrop"
+          onClick={() => setSubmitted(false)}
+        >
+          <div
+            className="contact__modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-success-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="contact__modal-close"
+              onClick={() => setSubmitted(false)}
+              aria-label="Закрыть"
+            >
+              ✕
+            </button>
+
+            <div className="contact__success" role="status" aria-live="polite">
+              <div className="contact__success-icon">
+                <CheckIcon />
+              </div>
+              <p className="contact__success-label">Заявка получена</p>
+              <h3 id="contact-success-title" className="contact__success-title">
+                Скоро свяжемся и обсудим задачу подробнее
+              </h3>
+              <p className="contact__success-text">
+                Если удобнее, можете сразу написать нам в Telegram или на почту.
+              </p>
+              <div className="contact__actions">
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  data-hover
+                  className="contact__btn-primary"
+                >
+                  {siteConfig.email}
+                </a>
+                <a
+                  href={siteConfig.telegram}
+                  data-hover
+                  className="contact__btn-secondary"
+                >
+                  Telegram ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

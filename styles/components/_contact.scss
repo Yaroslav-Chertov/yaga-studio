@@ -6,6 +6,7 @@
   padding: $section-padding-y $section-padding-x clamp(4rem, 8vw, 7rem);
   overflow: hidden;
   border-top: 1px solid rgba($color-primary, 0.12);
+  background-color: $color-deep;
 
   &::before {
     content: "";
@@ -62,6 +63,25 @@
     gap: 0.75rem;
   }
 
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: opacity $transition-fast;
+
+    &:disabled {
+      opacity: 0.55;
+
+      * {
+        cursor: progress;
+      }
+    }
+  }
+
   &__grid {
     display: grid;
     gap: 0.75rem;
@@ -88,7 +108,7 @@
     }
 
     &.is-invalid {
-      border-color: rgba($color-primary, 0.48);
+      border-color: rgba($color-danger, 0.55);
     }
   }
 
@@ -224,6 +244,14 @@
     font-size: 0.85rem;
     line-height: 1.65;
     margin-top: 20px;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+    transition: border-color $transition-fast;
+
+    &.is-invalid {
+      border-color: rgba($color-danger, 0.55);
+    }
 
     a {
       color: $color-primary;
@@ -242,8 +270,12 @@
   }
 
   &__error {
-    color: rgba($color-primary, 0.88);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: $color-danger;
     font-size: 0.76rem;
+    font-weight: 600;
     margin-top: 0.12rem;
 
     &--consent {
@@ -278,6 +310,10 @@
 
   &__submit {
     @include btn-primary;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
     border: 0;
     cursor: pointer;
 
@@ -287,11 +323,19 @@
     }
   }
 
+  &__spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid rgba($color-ink, 0.25);
+    border-top-color: $color-ink;
+    animation: contact-spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
   &__success {
     display: grid;
     gap: 1rem;
-    max-width: 36rem;
-    padding: 1rem 0;
   }
 
   &__success-icon {
@@ -337,6 +381,56 @@
     @include btn-outline;
   }
 
+  &__modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: rgba($color-ink, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: contact-fade-in 0.25s ease;
+  }
+
+  &__modal {
+    position: relative;
+    width: min(32rem, 100%);
+    max-height: calc(100svh - 3rem);
+    overflow-y: auto;
+    padding: clamp(2rem, 4vw, 2.75rem);
+    border: 1px solid rgba($color-primary, 0.16);
+    border-radius: $radius-xl;
+    background: $color-deep;
+    box-shadow: 0 30px 70px rgba($color-ink, 0.45);
+    animation: contact-modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid rgba($color-primary, 0.18);
+    border-radius: 50%;
+    background: rgba($color-primary, 0.06);
+    color: $color-primary;
+    cursor: pointer;
+    transition:
+      background-color $transition-fast,
+      transform $transition-fast;
+
+    &:hover {
+      background: rgba($color-primary, 0.14);
+      transform: rotate(90deg);
+    }
+  }
+
   @media (max-width: #{$bp-md}) {
     &__submit,
     &__upload-btn,
@@ -344,5 +438,31 @@
     &__btn-secondary {
       width: 100%;
     }
+  }
+}
+
+@keyframes contact-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contact-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contact-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

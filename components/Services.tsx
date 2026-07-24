@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 interface Service {
-  num: string;
+  icon: string;
   name: string;
   desc: string;
   badge?: string;
@@ -12,22 +12,22 @@ interface Service {
 
 const services: Service[] = [
   {
-    num: "01",
+    icon: "/icons/icon-01.svg",
     name: "UX & Исследования",
     desc: "Изучаем продукт, аудиторию и сценарии использования. Формируем структуру, логику и пользовательский путь, чтобы дизайн и разработка опирались на понятные решения.",
   },
   {
-    num: "02",
+    icon: "/icons/icon-02.svg",
     name: "UI-дизайн",
     desc: "Проектируем интерфейсы, которые выглядят цельно, современно и убедительно. Собираем макеты, адаптивные версии и UI-kit для дальнейшего развития продукта.",
   },
   {
-    num: "03",
+    icon: "/icons/icon-03.svg",
     name: "Веб-разработка",
     desc: "Реализуем сайты и цифровые продукты на frontend и backend, настраиваем интеграции и готовим проект к запуску. Следим, чтобы итог точно соответствовал задумке и работал стабильно.",
   },
   {
-    num: "04",
+    icon: "/icons/icon-04.svg",
     name: "AI-формат",
     desc: "Подключаем AI там, где он помогает ускорить рутину и быстрее проверять рабочие гипотезы. Это сокращает сроки отдельных этапов и оставляет больше ресурса на смысл, эстетику и точность.",
     badge: "🚀 Быстрый запуск",
@@ -58,7 +58,10 @@ function ServiceRow({ s, delay }: ServiceRowProps) {
         background: hovered ? "rgba(255,77,46,0.04)" : "transparent",
       }}
     >
-      <span className="service-row__num">{s.num}</span>
+      <span className="service-row__icon" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element -- local SVG, no optimization needed */}
+        <img src={s.icon} alt="" width={56} height={56} />
+      </span>
 
       <div className="service-row__body">
         <p className="service-row__name">{s.name}</p>
@@ -98,7 +101,7 @@ export default function Services() {
 
       <div className="services__list">
         {services.map((s, i) => (
-          <ServiceRow key={s.num} s={s} delay={i * 0.08} />
+          <ServiceRow key={s.name} s={s} delay={i * 0.08} />
         ))}
       </div>
     </section>

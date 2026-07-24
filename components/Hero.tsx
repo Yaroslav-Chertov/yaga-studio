@@ -1,23 +1,52 @@
 "use client";
 
-const heroTags = [
-  "Брендинг",
-  "UX-исследования",
-  "Интерфейсы",
-  "Веб-разработка",
-  "AI workflow",
-] as const;
-
-const heroFacts = [
-  { value: "5+", label: "лет практики с цифровыми продуктами" },
-  { value: "1", label: "команда для стратегии, дизайна и запуска" },
-  { value: "∞", label: "внимание к качеству и деталям" },
-] as const;
+import Image from "next/image";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const rawY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const rawScale = useTransform(scrollYProgress, [0, 1], [1, 1.14]);
+  const rawOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.35]);
+  const rawRotate = useTransform(scrollYProgress, [0, 1], [0, 6]);
+
+  const visualY = prefersReducedMotion ? 0 : rawY;
+  const visualScale = prefersReducedMotion ? 1 : rawScale;
+  const visualOpacity = prefersReducedMotion ? 1 : rawOpacity;
+  const visualRotate = prefersReducedMotion ? 0 : rawRotate;
+
   return (
-    <section className="hero">
+    <section ref={sectionRef} className="hero">
       <div className="hero__glow" aria-hidden />
+
+      <div className="hero__visual-wrap" aria-hidden>
+        <motion.div
+          className="hero__visual"
+          style={{
+            y: visualY,
+            scale: visualScale,
+            opacity: visualOpacity,
+            rotate: visualRotate,
+          }}
+        >
+          <Image
+            src="/hero-blob.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 767px) 78vw, 44vw"
+            className="hero__visual-img"
+          />
+        </motion.div>
+      </div>
 
       <div className="hero__content">
         <div className="hero__top">
@@ -28,20 +57,6 @@ export default function Hero() {
             </em>
           </h1>
 
-          <div className="hero__aside">
-            <p className="hero__description">
-              Подключаемся к проектам, где важно не просто сделать красивый
-              digital-слой, а выстроить цельный образ бренда и довести его до
-              рабочего результата.
-            </p>
-            <div className="hero__tags" aria-label="Направления работы">
-              {heroTags.map((tag) => (
-                <span key={tag} className="hero__tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="hero__bottom">

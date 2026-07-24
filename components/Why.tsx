@@ -1,31 +1,33 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
-import { useInView } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
 const reasons = [
   {
-    num: "01",
     title: "Сильная визуальная подача",
     text: "Не идём по шаблонному пути и не собираем решения «как у всех». Для нас важно, чтобы у проекта был собственный характер, а у бренда — выразительный и узнаваемый образ.",
   },
   {
-    num: "02",
     title: "Дизайн и разработка в одной связке",
     text: "Проектируем и реализуем внутри одной команды. Это помогает сохранить идею, избежать искажений на этапе передачи и довести результат до нужного уровня в деталях.",
   },
   {
-    num: "03",
     title: "Рациональный формат работы",
     text: "Без лишних управленческих слоёв и перегруженной структуры. Бюджет проекта работает на исследование, дизайн и разработку — то есть на сам результат.",
   },
   {
-    num: "04",
     title: "Прямой диалог",
     text: "Вы общаетесь напрямую с теми, кто ведёт проект. Это ускоряет работу, упрощает согласования и делает процесс более прозрачным.",
   },
   {
-    num: "05",
     title: "Технологичный подход",
     text: "Используем современные инструменты, включая AI, там, где они действительно помогают ускорить процесс и повысить качество результата.",
   },
@@ -47,10 +49,6 @@ function ReasonRow({ r, delay }: { r: Reason; delay: number }) {
         transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
       }}
     >
-      <span className="why-row__num" aria-hidden>
-        {r.num}
-        
-      </span>
       <h3 className="why-row__title">{r.title}</h3>
       <p className="why-row__text">{r.text}</p>
     </div>
@@ -60,6 +58,22 @@ function ReasonRow({ r, delay }: { r: Reason; delay: number }) {
 export default function Why() {
   const titleRef = useRef<HTMLDivElement>(null);
   const inView = useInView(titleRef, { once: true });
+
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: bannerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const rawY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const rawScale = useTransform(scrollYProgress, [0, 1], [0.94, 1.1]);
+  const rawRotate = useTransform(scrollYProgress, [0, 1], [-6, 6]);
+
+  const bannerY = prefersReducedMotion ? 0 : rawY;
+  const bannerScale = prefersReducedMotion ? 1 : rawScale;
+  const bannerRotate = prefersReducedMotion ? 0 : rawRotate;
 
   return (
     <section id="why" className="why">
@@ -84,11 +98,30 @@ export default function Why() {
 
       <div className="why__list">
         {reasons.map((r, i) => (
-          <ReasonRow key={r.num} r={r} delay={i * 0.07} />
+          <ReasonRow key={r.title} r={r} delay={i * 0.07} />
         ))}
       </div>
 
-      <div className="why__banner">
+      <div ref={bannerRef} className="why__banner">
+        <div className="why__banner-visual-wrap" aria-hidden>
+          <motion.div
+            className="why__banner-visual"
+            style={{
+              y: bannerY,
+              scale: bannerScale,
+              rotate: bannerRotate,
+            }}
+          >
+            <Image
+              src="/why-banner-blob.png"
+              alt=""
+              fill
+              sizes="(max-width: 767px) 0px, 260px"
+              className="why__banner-visual-img"
+            />
+          </motion.div>
+        </div>
+
         <p className="why__banner-text">
           Если вам близок современный, смелый и&nbsp;собранный подход
           к&nbsp;дизайну и&nbsp;разработке,{" "}

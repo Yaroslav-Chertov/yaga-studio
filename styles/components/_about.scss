@@ -4,6 +4,7 @@
 .about {
   @include section-base;
   overflow: clip;
+  background-color: $color-deep;
 
   &__header {
     display: grid;
@@ -186,6 +187,7 @@
 
 .case-page {
   min-height: 100vh;
+  background-color: $color-deep;
 }
 
 .case-hero {

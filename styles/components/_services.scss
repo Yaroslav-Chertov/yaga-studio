@@ -75,19 +75,27 @@
     translate: 5px 0;
   }
 
-  &__num {
-    font-family: $font-display;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.08em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba($color-primary, 0.14);
-    user-select: none;
+  &__icon {
+    display: flex;
+    align-items: center;
+    width: clamp(2.4rem, 5vw, 3.5rem);
+    height: clamp(2.4rem, 5vw, 3.5rem);
+    opacity: 0.9;
+    transition: transform $transition-fast;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     @include md {
       padding-top: 0.1rem;
     }
+  }
+
+  &:hover &__icon {
+    transform: scale(1.08) rotate(-4deg);
   }
 
   &__body {

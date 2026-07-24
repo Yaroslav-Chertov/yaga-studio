@@ -23,18 +23,6 @@
   font-size: clamp(2.8rem, 5.5vw, 5rem);
 }
 
-@mixin display-num {
-  font-family: $font-display;
-  font-weight: 800;
-  font-size: clamp(4rem, 10vw, 9rem);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba($color-primary, 0.12);
-  user-select: none;
-  pointer-events: none;
-}
-
 @mixin btn-primary {
   display: inline-flex;
   align-items: center;
@@ -92,22 +80,6 @@
 @mixin section-base {
   padding: $section-padding-y $section-padding-x;
   border-top: 1px solid rgba($color-primary, 0.12);
-}
-
-@mixin section-index($n) {
-  &::before {
-    content: "0#{$n}";
-    position: absolute;
-    top: $section-padding-y;
-    left: $section-padding-x;
-    font-family: $font-display;
-    font-weight: 800;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    color: rgba($color-primary, 0.22);
-    line-height: 1;
-    pointer-events: none;
-  }
 }
 
 @mixin radial-glow($size: 600px, $opacity: 0.06) {
