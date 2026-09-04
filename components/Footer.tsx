@@ -23,6 +23,10 @@ export default function Footer() {
             и&nbsp;работают на&nbsp;результат.
           </p>
           <p className="footer__caption">© 2026 · Нови-Сад · Санкт-Петербург</p>
+          <p className="footer__legal-info">
+            Самозанятая Чертова Г.&nbsp;В. · ИНН 720415928447 ·
+            г.&nbsp;Санкт-Петербург
+          </p>
         </div>
 
         <div className="footer__col">

@@ -479,8 +479,7 @@ export default function Contact() {
 
           <div className="contact__footer">
             <p className="contact__note">
-              Обычно отвечаем в&nbsp;течение рабочего дня. Если потребуется,
-              уточним детали по&nbsp;задаче.
+              Обычно отвечаем в&nbsp;течение рабочего дня.
             </p>
             <button
               type="submit"

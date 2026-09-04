@@ -76,16 +76,17 @@ export default async function CasePage({ params }: CasePageProps) {
       <Nav />
       <main className="case-page">
         <section className="case-hero">
-          <Link href="/#cases" className="case-hero__back" data-hover>
-            <span aria-hidden="true">↙</span>
-            Назад к кейсам
-          </Link>
+          <div className="case-hero__meta">
+            <Link href="/#cases" className="case-hero__back" data-hover>
+              Назад к кейсам
+            </Link>
 
-          <div className="case-hero__top">
-            <span className="case-hero__label">
-              {item.year} — {item.category}
-            </span>
-            <span className="case-hero__status">{item.status}</span>
+            <div className="case-hero__top">
+              <span className="case-hero__label">
+                {item.year} — {item.category}
+              </span>
+              <span className="case-hero__status">{item.status}</span>
+            </div>
           </div>
 
           <h1 className="case-hero__title">{item.title}</h1>
