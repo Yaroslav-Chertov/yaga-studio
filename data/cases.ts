@@ -10,6 +10,7 @@ export interface CaseItem {
   previewAlt: string;
   title: string;
   intro: string;
+  tasks: string[];
   liveUrl?: string;
   sections: {
     title: string;
@@ -31,6 +32,7 @@ export const cases: CaseItem[] = [
     previewAlt: "Скриншот проекта SovVilla",
     title:
       "SovVilla — сайт премиум-вилл в скандинавском стиле с онлайн-бронированием",
+    tasks: ["Дизайн", "No-code вёрстка на Tilda", "Интеграция бронирования"],
     intro:
       "Спроектировали и собрали сайт для премиальных вилл под Санкт-Петербургом так, чтобы с первого экрана считывалось ощущение дорогого, спокойного отдыха, а бронирование занимало пару кликов.",
     liveUrl: "https://sovvilla.ru",
@@ -65,6 +67,7 @@ export const cases: CaseItem[] = [
     previewImage: "/cases/digiform-cover.png",
     previewAlt: "Скриншот проекта Digiform",
     title: "Digiform — быстрый лендинг агентства без бэкенда",
+    tasks: ["Frontend-разработка", "Статический экспорт", "Форма заявки"],
     intro:
       "Взяли готовый дизайн digital-агентства и превратили его в быстрый полностью статический сайт с рабочей формой заявки, которая одновременно уходит на почту и в Telegram.",
     liveUrl: "https://digiform.ru",
@@ -100,6 +103,7 @@ export const cases: CaseItem[] = [
     previewAlt: "Скриншот проекта Structura Planer",
     title:
       "Structura Planer — SaaS-лендинг и коммерческая воронка для цифрового продукта",
+    tasks: ["UX/UI-дизайн", "Frontend-разработка", "Приём оплаты"],
     intro:
       "Запустили сайт цифрового планера так, чтобы он не просто презентовал продукт, а доводил пользователя от первого касания до оплаты и выдачи доступа.",
     liveUrl: "https://structuraplaner.ru",
@@ -134,6 +138,7 @@ export const cases: CaseItem[] = [
     previewImage: "/cases/sneakers-preview.png",
     previewAlt: "Скриншот e-commerce проекта под NDA",
     title: "NDA retail platform — e-commerce интерфейс для fashion-сегмента",
+    tasks: ["UI-дизайн", "Frontend-разработка", "Каталог и корзина"],
     intro:
       "Для fashion-проекта под NDA собрали лёгкий интернет-магазин с акцентом на быстрый выбор товара, понятную навигацию и аккуратный пользовательский путь от каталога до оформления заказа.",
     sections: [
@@ -168,6 +173,7 @@ export const cases: CaseItem[] = [
     previewAlt: "Превью индустриального проекта под NDA",
     title:
       "NDA industrial product — прототип сервиса диспетчеризации и аналитики",
+    tasks: ["Продуктовый дизайн", "Прототипирование", "Дизайн-система"],
     intro:
       "Для индустриального продукта в разработке собираем интерфейс, который помогает визуализировать простои техники, быстрее считывать ключевые KPI и принимать решения на операционном уровне.",
     sections: [
@@ -202,6 +208,7 @@ export const cases: CaseItem[] = [
     previewAlt: "Скриншот медиаплатформы под NDA",
     title:
       "NDA media platform — fullstack SPA с аккаунтами и личной коллекцией",
+    tasks: ["Frontend-разработка", "Backend и авторизация", "Личный кабинет"],
     intro:
       "Для медиасервиса под NDA собрали fullstack-продукт с авторизацией, поиском по внешнему каталогу и личным пространством пользователя для сохранённого контента.",
     sections: [

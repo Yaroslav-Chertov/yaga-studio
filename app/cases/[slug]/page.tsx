@@ -106,6 +106,14 @@ export default async function CasePage({ params }: CasePageProps) {
             )}
           </div>
 
+          <div className="case-hero__tasks">
+            {item.tasks.map((task) => (
+              <span key={task} className="case-hero__task">
+                {task}
+              </span>
+            ))}
+          </div>
+
           <div className="case-hero__image">
             <Image
               src={item.previewImage}
@@ -126,13 +134,33 @@ export default async function CasePage({ params }: CasePageProps) {
               <span>Формат</span>
               <strong>{item.category}</strong>
             </div>
+            <div className="case-content__meta-item">
+              <span>Что делали</span>
+              <div className="case-content__meta-list">
+                {item.tasks.map((task) => (
+                  <p key={task} className="case-content__meta-list-item">
+                    {task}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="case-content__body">
-            {item.sections.map((section) => (
-              <article key={section.title} className="case-content__section">
-                <h2>{section.title}</h2>
-                <p>{section.text}</p>
+            {item.sections.map((section, i) => (
+              <article
+                key={section.title}
+                className={`case-content__section${
+                  i === item.sections.length - 1
+                    ? " case-content__section--result"
+                    : ""
+                }`}
+              >
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2>{section.title}</h2>
+                  <p>{section.text}</p>
+                </div>
               </article>
             ))}
           </div>

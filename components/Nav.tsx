@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const links = [
   { href: "/#cases", label: "Портфолио" },
@@ -59,6 +60,8 @@ const BurgerIcon = ({ open }: { open: boolean }) => (
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -90,6 +93,26 @@ export default function Nav() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    const [path, hash] = href.split("#");
+    if (!hash) return;
+
+    if (pathname === "/" || pathname === path) {
+      e.preventDefault();
+      closeMenu();
+      const target = document.getElementById(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.replaceState(null, "", href);
+      } else {
+        router.push(href);
+      }
+    }
+  };
+
   return (
     <>
       <nav
@@ -104,7 +127,11 @@ export default function Nav() {
         <ul className="nav__list">
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="nav__link">
+              <Link
+                href={l.href}
+                className="nav__link"
+                onClick={(e) => handleAnchorClick(e, l.href)}
+              >
                 {l.label}
               </Link>
             </li>
@@ -137,7 +164,11 @@ export default function Nav() {
               key={l.href}
               style={{ transitionDelay: menuOpen ? `${0.05 + i * 0.05}s` : "0s" }}
             >
-              <Link href={l.href} className="nav-drawer__link" onClick={closeMenu}>
+              <Link
+                href={l.href}
+                className="nav-drawer__link"
+                onClick={(e) => handleAnchorClick(e, l.href)}
+              >
                 {l.label}
               </Link>
             </li>

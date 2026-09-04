@@ -32,11 +32,30 @@ function CaseRow({ item, index }: CaseRowProps) {
           transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.55s ease ${index * 0.08}s`,
         }}
       >
-        <span className="case-row__year">{item.year}</span>
-        <p className="case-row__client">{item.client}</p>
-        <p className="case-row__scope">{item.scope}</p>
-        <span className="case-row__link">{item.linkLabel}</span>
-        <span className="case-row__status">{item.status}</span>
+        <div className="case-row__body">
+          <div className="case-row__headline">
+            <h3 className="case-row__client">{item.client}</h3>
+            <span className="case-row__status">{item.status}</span>
+          </div>
+
+          <div className="case-row__tags">
+            <span className="case-row__tag">[{item.category}]</span>
+            <span className="case-row__tag">/{item.year}</span>
+          </div>
+
+          <p className="case-row__scope">{item.scope}</p>
+
+          <div className="case-row__footer">
+            <div className="case-row__tasks">
+              {item.tasks.map((task) => (
+                <span key={task} className="case-row__task">
+                  {task}
+                </span>
+              ))}
+            </div>
+            <span className="case-row__link">{item.linkLabel}</span>
+          </div>
+        </div>
       </div>
 
       <div
@@ -44,6 +63,9 @@ function CaseRow({ item, index }: CaseRowProps) {
         aria-hidden="true"
       >
         <div className="case-row__preview-image">
+          <span className="case-row__preview-index">
+            {String(index + 1).padStart(2, "0")}
+          </span>
           <Image
             src={item.previewImage}
             alt={item.previewAlt}
@@ -57,32 +79,10 @@ function CaseRow({ item, index }: CaseRowProps) {
 }
 
 export default function About() {
-  const titleRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(titleRef, { once: true, margin: "-80px" });
-
   return (
     <section id="cases" className="about">
-      <div className="about__hero" ref={titleRef}>
-        <div className="about__title-wrap">
-          <h2
-            className="about__heading"
-            style={{
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(24px)",
-              transition: "opacity 0.6s ease, transform 0.6s ease",
-            }}
-          >
-            Наши кейсы
-          </h2>
-        </div>
-      </div>
-
-      <div className="about__table-head">
-        <span>Год</span>
-        <span>Клиент</span>
-        <span>Что сделали</span>
-        <span>Ссылка</span>
-        <span>Статус</span>
+      <div className="about__hero">
+        <h2 className="about__heading">Наши кейсы</h2>
       </div>
 
       <div className="about__list">
